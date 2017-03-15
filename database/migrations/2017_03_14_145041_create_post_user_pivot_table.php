@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostsUsersPivotTable extends Migration
+class CreatePostUserPivotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -37,7 +37,7 @@ class CreatePostsUsersPivotTable extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0'); // disable foreign key constraints
-        Schema::dropIfExists('posts_users');
+        Schema::dropIfExists('post_user');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1'); // reenable foreign key constraints
     }
 }
