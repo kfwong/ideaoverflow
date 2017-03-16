@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('posts');
 });
 
 Route::get('/posts/create', 'PostController@create');
