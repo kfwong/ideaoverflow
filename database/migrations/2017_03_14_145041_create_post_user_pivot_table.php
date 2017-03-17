@@ -13,7 +13,7 @@ class CreatePostUserPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts_users', function(Blueprint $table){
+        Schema::create('post_user', function(Blueprint $table){
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('post_id');
 
