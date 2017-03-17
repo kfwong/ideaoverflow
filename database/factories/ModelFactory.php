@@ -9,7 +9,7 @@
 | you a convenient way to create models for testing and seeding your
 | database. Just tell the factory how a default model should look.
 |
-*/
+ */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
@@ -17,7 +17,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
     return [
         'name' => $faker->name,
-		'username' => $faker->unique()->userName,
+        'username' => $faker->unique()->userName,
         'email' => $faker->unique()->safeEmail,
         'description' => $faker->paragraph(2, true),
         'role' => 'member',
@@ -27,21 +27,21 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Post::class, function (Faker\Generator $faker) {
-	$user_id = $faker->randomNumber(2);
-	return [
-	'title' => $faker->name,
-	'description' => $faker->paragraph(2, true),
-	'user_id' => $user_id,
-	];
+    $user_id = $faker->randomNumber(2);
+    return [
+        'title' => $faker->name,
+        'description' => $faker->paragraph(2, true),
+        'user_id' => $user_id,
+    ];
 });
 
 
 $factory->define(App\Comment::class, function (Faker\Generator $faker) {
-	$user_id = $faker->randomNumber(2);
-	$post_id = $faker->randomNumber(2);
-	return [
-	'description' => $faker->paragraph(2, true),
-	'user_id' => $user_id,
-	'post_id' => $post_id,
-	];
+    $user_id = $faker->randomNumber(2);
+    $post_id = $faker->randomNumber(2);
+    return [
+        'description' => $faker->paragraph(2, true),
+        'user_id' => $user_id,
+        'post_id' => $post_id,
+    ];
 });
