@@ -10,4 +10,5 @@ Homestead.yaml
 /public/css
 /public/js
 /public/img
+/public/sass
 .htaccess
