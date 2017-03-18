@@ -22,7 +22,9 @@ class Comment extends Model
      * @var array
      */	 
     protected $fillable = [
-        'description'
+        'description',
+        'user_id',
+        'post_id'
     ];
 
     public function user(){
