@@ -15,11 +15,7 @@ class PostController extends Controller
      */
     public function view($id){
 
-        $post = Post::find($id);
-
-        if (!$post) {
-            abort(404);
-        }
+        $post = Post::findOrFail($id);
 
         //$this->authorize('view', Post::class);
 
