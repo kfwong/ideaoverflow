@@ -7,12 +7,61 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    /**
+     * Display a list of all posts.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index() {
+        $posts = Post::all();
+        foreach ($posts as $post) {
+            $post->user; // user information
+            $post->tag = 'idea'; // tags where type= 'post'
+            $post->comments_count = 4; // number of comments
+            $post->likes_count = 14; // number of likes
+        }
+        return view('posts', [
+            'posts' => $posts
+        ]);
+    }
 
     /**
-     * Show the post.
-     * 
-     * @param User $user
-     * @return Response
+     * Show the form for creating a new post.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(){
+
+        //$this->authorize('create', Post::class);
+
+        return "Show form for creating post";
+    }
+
+    /**
+     * Store a newly created post in storage.
+     *
+     * @param  Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request){
+
+        //$this->authorize('create', Post::class);
+
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'description' => 'required',
+        ]);
+
+        $post = Post::create(['user_id' => $request->user, 'title' => $request->title, 'description' => $request->description]);
+
+        return "Post $post->id created.";
+    }
+
+    /**
+     * Display the specified post.
+     *
+     * @param $id
+     * @return \Illuminate\Http\Response
      */
     public function show($id){
 
@@ -27,51 +76,13 @@ class PostController extends Controller
         return " Post title: $title <br><br>\n Content: $content <br><br>\n Author ID: $authorId";
     }
 
-    public function index() {
-        $posts = Post::all();
-        foreach ($posts as $post) {
-            $post->user; // user information
-            $post->tag = 'idea'; // tags where type= 'post'
-            $post->comments_count = 4; // number of comments
-            $post->likes_count = 14; // number of likes
-        }
-        return view('posts', [
-            'posts' => $posts
-            ]);
-    }
-
     /**
-     * Show the form to create a new post.
+     * Update the specified post in storage.
      *
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  $id
+     * @return \Illuminate\Http\Response
      */
-    public function create(){
-
-        //$this->authorize('create', Post::class);
-
-        return "Show the create form";
-    }
-
-    /**
-     * Store the post.
-     *
-     * @param  Request $request
-     * @return Response
-     */
-    public function store(Request $request){
-
-        //$this->authorize('create', Post::class);
-
-        $this->validate($request, [
-            'title' => 'required|max:255',
-            'description' => 'required',
-        ]);
-
-        $post = Post::create(['user_id' => $request->user, 'title' => $request->title, 'description' => $request->description]);
-
-        return "Created post with <br><br>\n Post title: $post->title <br><br>\n Content: $post->description <br><br>\n Author ID: $post->user_id";
-    }
-
     public function update(Request $request, $id){
 
         $post = Post::findOrFail($id);
@@ -87,9 +98,15 @@ class PostController extends Controller
         $post->description = $request->description;
         $post->save();
 
-        return "Updated post with <br><br>\n Post title: $post->title <br><br>\n Content: $post->description <br><br>\n Author ID: $post->user_id";
+        return "Post $post->id updated.";
     }
 
+    /**
+     * Remove the specified post from storage.
+     *
+     * @param  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id){
 
         $post = Post::findOrFail($id);
@@ -98,6 +115,6 @@ class PostController extends Controller
 
         $post->delete();
 
-        return "Deleted post with <br><br>\n Post title: $post->title <br><br>\n Content: $post->description <br><br>\n Author ID: $post->user_id";
+        return "Post $post->id deleted.";
     }
 }
