@@ -14,7 +14,7 @@ class PostController extends Controller
      * @param User $user
      * @return Response
      */
-    public function view($id){
+    public function show($id){
 
         $post = Post::findOrFail($id);
 
@@ -90,7 +90,7 @@ class PostController extends Controller
         return "Updated post with <br><br>\n Post title: $post->title <br><br>\n Content: $post->description <br><br>\n Author ID: $post->user_id";
     }
 
-    public function delete($id){
+    public function destroy($id){
 
         $post = Post::findOrFail($id);
 
