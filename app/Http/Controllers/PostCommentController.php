@@ -82,11 +82,19 @@ class PostCommentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Post     $post
+     * @param  Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post, Comment $comment)
     {
-        //
+        // Make sure that the comment belongs to the post
+        if ($comment->post_id != $post->id) {
+            abort(404);
+        }
+
+        $comment->delete();
+
+        return "Comment $comment->id deleted.";
     }
 }
