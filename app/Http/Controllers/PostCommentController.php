@@ -38,14 +38,21 @@ class PostCommentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created comment in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
-        //
+        $this->validate($request, [
+            'description' => 'required',
+        ]);
+
+        $comment = Comment::create(['user_id' => $request->user, 'post_id' => $post->id, 'description' => $request->description]);
+
+        return "Comment $comment->id created.";
     }
 
     /**
