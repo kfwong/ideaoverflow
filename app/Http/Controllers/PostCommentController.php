@@ -49,14 +49,20 @@ class PostCommentController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified comment.
      *
-     * @param  int  $id
+     * @param  Post     $post
+     * @param  Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post, Comment $comment)
     {
-        //
+        // Make sure that the comment belongs to the post
+        if ($comment->post_id != $post->id) {
+            abort(404);
+        }
+
+        return "Comment $comment->id : $comment->description";
     }
 
     /**
