@@ -92,6 +92,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $post){
+    public function update(Request $request, Post $post){
         //$this->authorize('update', Post::class);
 
         $this->validate($request, [
@@ -113,6 +114,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($post){
+    public function destroy(Post $post){
         //$this->authorize('delete', Post::class);
 
         $post->delete();
