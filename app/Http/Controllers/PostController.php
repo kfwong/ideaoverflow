@@ -7,26 +7,11 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-
     /**
-     * Show the post.
-     * 
-     * @param User $user
-     * @return Response
+     * Display a list of all posts.
+     *
+     * @return \Illuminate\Http\Response
      */
-    public function view($id){
-
-        $post = Post::findOrFail($id);
-
-        //$this->authorize('view', Post::class);
-
-        $title = $post->title;
-        $content = $post->description;
-        $authorId = $post->user_id;
-
-        return " Post title: $title <br><br>\n Content: $content <br><br>\n Author ID: $authorId";
-    }
-
     public function index() {
         $posts = Post::all();
         foreach ($posts as $post) {
@@ -37,26 +22,26 @@ class PostController extends Controller
         }
         return view('posts', [
             'posts' => $posts
-            ]);
+        ]);
     }
 
     /**
-     * Show the form to create a new post.
+     * Show the form for creating a new post.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function create(){
 
         //$this->authorize('create', Post::class);
 
-        return "Show the create form";
+        return "Show form for creating post";
     }
 
     /**
-     * Store the post.
+     * Store a newly created post in storage.
      *
      * @param  Request $request
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
 
@@ -69,13 +54,44 @@ class PostController extends Controller
 
         $post = Post::create(['user_id' => $request->user, 'title' => $request->title, 'description' => $request->description]);
 
-        return "Created post with <br><br>\n Post title: $post->title <br><br>\n Content: $post->description <br><br>\n Author ID: $post->user_id";
+        return "Post $post->id created.";
     }
 
-    public function update(Request $request, $id){
+    /**
+     * Display the specified post.
+     *
+     * @param Post $post
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Post $post){
+        //$this->authorize('view', Post::class);
 
-        $post = Post::findOrFail($id);
+        $title = $post->title;
+        $content = $post->description;
+        $authorId = $post->user_id;
 
+        return " Post title: $title <br><br>\n Content: $content <br><br>\n Author ID: $authorId";
+    }
+		
+    /**
+     * Show the form for editing the specified post.
+     *
+     * @param  Post $post
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Post $post)
+    {
+        return "Show form for editing post";
+    }
+
+    /**
+     * Update the specified post in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Post $post
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $post){
         //$this->authorize('update', Post::class);
 
         $this->validate($request, [
@@ -87,17 +103,20 @@ class PostController extends Controller
         $post->description = $request->description;
         $post->save();
 
-        return "Updated post with <br><br>\n Post title: $post->title <br><br>\n Content: $post->description <br><br>\n Author ID: $post->user_id";
+        return "Post $post->id updated.";
     }
 
-    public function delete($id){
-
-        $post = Post::findOrFail($id);
-
+    /**
+     * Remove the specified post from storage.
+     *
+     * @param  Post $post
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($post){
         //$this->authorize('delete', Post::class);
 
         $post->delete();
 
-        return "Deleted post with <br><br>\n Post title: $post->title <br><br>\n Content: $post->description <br><br>\n Author ID: $post->user_id";
+        return "Post $post->id deleted.";
     }
 }
