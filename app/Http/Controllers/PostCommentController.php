@@ -27,13 +27,14 @@ class PostCommentController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new comment.
      *
+     * @param  Post     $post
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Post $post)
     {
-        //
+        return "Show form for creating comment";
     }
 
     /**
