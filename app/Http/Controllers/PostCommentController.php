@@ -9,13 +9,21 @@ use App\Comment;
 class PostCommentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a list of all comments for the specified post.
      *
+     * @param  Post     $post
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Post $post)
     {
-        //
+        $comments = $post->comments;
+        $list = "";
+
+        foreach ($comments as $comment) {
+            $list = $list . "Comment $comment->id : $comment->description <br>\n";
+        }
+
+        return $list;
     }
 
     /**
