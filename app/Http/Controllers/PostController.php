@@ -9,24 +9,24 @@ class PostController extends Controller
     /**
      * Show the post.
      * 
-     * @param $id
+     * @param User $user
      * @return Response
      */
     public function view($id){
-
-        $this->authorize('view', Post::class);
 
         $post = Post::find($id);
 
         if (!$post) {
             abort(404);
-        } else {
-            $title = $post->title;
-            $content = $post->description;
-            $authorId = $post->user_id;
-
-            return " Post title: $title <br><br>\n Content: $content <br><br>\n Author ID: $authorId";
         }
+
+        $this->authorize('view', Post::class);
+
+        $title = $post->title;
+        $content = $post->description;
+        $authorId = $post->user_id;
+
+        return " Post title: $title <br><br>\n Content: $content <br><br>\n Author ID: $authorId";
     }
 
     /**
