@@ -49,10 +49,10 @@ class PostController extends Controller
 
         $this->validate($request, [
             'title' => 'required|max:255',
-            'description' => 'required',
+            'content' => 'required',
         ]);
 
-        $post = Post::create(['user_id' => $request->user, 'title' => $request->title, 'description' => $request->description]);
+        $post = Post::create(['user_id' => $request->user, 'title' => $request->title, 'content' => $request->content]);
 
         return "Post $post->id created.";
     }
@@ -67,7 +67,7 @@ class PostController extends Controller
         //$this->authorize('view', Post::class);
 
         $title = $post->title;
-        $content = $post->description;
+        $content = $post->content;
         $authorId = $post->user_id;
 
         return " Post title: $title <br><br>\n Content: $content <br><br>\n Author ID: $authorId";
@@ -91,16 +91,16 @@ class PostController extends Controller
      * @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $post){
+    public function update(Request $request, Post $post){
         //$this->authorize('update', Post::class);
 
         $this->validate($request, [
             'title' => 'required|max:255',
-            'description' => 'required',
+            'content' => 'required',
         ]);
 
         $post->title = $request->title;
-        $post->description = $request->description;
+        $post->content = $request->content;
         $post->save();
 
         return "Post $post->id updated.";
@@ -112,7 +112,7 @@ class PostController extends Controller
      * @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($post){
+    public function destroy(Post $post){
         //$this->authorize('delete', Post::class);
 
         $post->delete();
