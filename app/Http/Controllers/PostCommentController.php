@@ -68,19 +68,32 @@ class PostCommentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified comment in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Post     $post
+     * @param  Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post, Comment $comment)
     {
-        //
+        // Make sure that the comment belongs to the post
+        if ($comment->post_id != $post->id) {
+            abort(404);
+        }
+
+        $this->validate($request, [
+            'description' => 'required',
+        ]);				
+
+        $comment->description = $request->description;
+        $comment->save();
+
+        return "Comment $comment->id updated.";
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified comment from storage.
      *
      * @param  Post     $post
      * @param  Comment  $comment
