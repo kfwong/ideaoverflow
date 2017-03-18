@@ -41,6 +41,26 @@ class PostController extends Controller
         return "Show the create form";
     }
 
+    /**
+     * Store the post.
+     *
+     * @param  Request $request
+     * @return Response
+     */
+    public function store(Request $request){
+
+        //$this->authorize('create', Post::class);
+
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'description' => 'required',
+        ]);
+
+        $post = Post::create(['user_id' => $request->user, 'title' => $request->title, 'description' => $request->description]);
+
+        return "Created post with <br><br>\n Post title: $post->title <br><br>\n Content: $post->description <br><br>\n Author ID: $post->user_id";
+    }
+
     public function update($id){
 
         $this->authorize('update', Post::class);
