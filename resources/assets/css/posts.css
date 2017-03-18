@@ -1,0 +1,8 @@
+.posts {
+	font-size:1.2em;
+	padding: 1em 1em 1em 1em;
+}
+
+.posts:hover {
+	background-color: #f6f8f9;
+}

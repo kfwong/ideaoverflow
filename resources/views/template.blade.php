@@ -12,18 +12,18 @@
     {{ Html::style('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css') }}
     {{ Html::style('css/custom.css') }}
 </head>
-<body class="container-fluid full-height">
+<body class="container full-height">
 
 <div id="fb-root"></div>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-12">
         @include('includes.nav')
     </div>
 </div>
 
 <div class="row">
 
-    <main class="col-md-offset-1 col-md-10 col-md-offset-1">
+    <main class="col-xs-12 col-md-offset-1 col-md-10">
 
         @yield('content')
 
@@ -31,7 +31,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-offset-1 col-md-10 col-md-offset-1">
+    <div class="col-xs-12 col-md-offset-1 col-md-10">
         <hr/>
         @include('includes.footer')
     </div>
