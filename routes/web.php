@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('posts');
 });
 
+Route::get('/posts/view/{id}', 'PostController@view');
 Route::get('/posts/create', 'PostController@create');
 
 Auth::routes();
