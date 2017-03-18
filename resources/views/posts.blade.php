@@ -13,62 +13,31 @@
 @endsection
 
 @section('content')
+
+@if(isset($posts))
+@foreach($posts as $post)
+
 <div class="posts">
 	<div>
 		<div>
-			<h3>Post title <small><span class="label label-success">Idea</span></small></h3>
-			<h5><strong>Kang Fei</strong> @kfwong</h5>
+			<h3><a class="post-title" href="{{'posts/'.$post->id}}">{{ $post->title }}</a> <small><a href="" class="{{'post-tag '.$post->tag.'-tag'}}">{{ ucfirst($post->tag) }}</a></small></h3>
+			<h5><a class="user-name" href="{{ 'users/'.$post->user->id }}">{{$post->user->name}}</a> {{ '@'.$post->user->username }}</h5>
 		</div>
 	</div>
 	<div>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae perferendis sapiente provident modi, commodi itaque eaque vitae ut tempora fugit quidem facere animi iste, officia numquam maiores eum veniam accusantium!</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur aspernatur itaque atque ab, quo eius adipisci distinctio quibusdam ullam dicta et nulla, explicabo totam dolorum fugiat perspiciatis, optio praesentium dolorem. <a href="">(More)</a></p>
+		<p>{{ $post->description }}</p>
 	</div>
 	<div>
 		<ul class="list-inline">
-			<li><a href="">Like</a></li>
-			<li><a href="">Comments</a> <span class="badge">5</span></li>
+			<li><button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button></li>
+			<li><a href="{{'posts/'.$post->id}}">{{ $post->likes_count . ' Like' . ($post->likes_count > 1? 's':'')}}</a></li>
+			<li><a href="{{'posts/'.$post->id}}">{{ 'Comment' . ($post->comments_count > 1? 's' : '')}}</a> <span class="badge">{{ $post->comments_count }}</span></li>
 		</ul>
 		
 	</div> 
 </div> <!-- posts -->
-<div class="posts">
-	<div>
-		<div>
-			<h3>Post title <small><span class="label label-success">Idea</span></small></h3>
-			<h5><strong>Kang Fei</strong> @kfwong</h5>
-		</div>
-	</div>
-	<div>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae perferendis sapiente provident modi, commodi itaque eaque vitae ut tempora fugit quidem facere animi iste, officia numquam maiores eum veniam accusantium!</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur aspernatur itaque atque ab, quo eius adipisci distinctio quibusdam ullam dicta et nulla, explicabo totam dolorum fugiat perspiciatis, optio praesentium dolorem. <a href="">(More)</a></p>
-	</div>
-	<div>
-		<ul class="list-inline">
-			<li><a href="">Like</a></li>
-			<li><a href="">Comments</a> <span class="badge">5</span></li>
-		</ul>
-		
-	</div> 
-</div> <!-- posts -->
-<div class="posts">
-	<div>
-		<div>
-			<h3>Post title <small><span class="label label-primary">Project</span></small></h3>
-			<h5><strong>Kang Fei</strong> @kfwong</h5>
-		</div>
-	</div>
-	<div>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae perferendis sapiente provident modi, commodi itaque eaque vitae ut tempora fugit quidem facere animi iste, officia numquam maiores eum veniam accusantium!</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur aspernatur itaque atque ab, quo eius adipisci distinctio quibusdam ullam dicta et nulla, explicabo totam dolorum fugiat perspiciatis, optio praesentium dolorem. <a href="">(More)</a></p>
-	</div>
-	<div>
-		<ul class="list-inline">
-			<li><a href="">Like</a></li>
-			<li><a href="">Comments</a> <span class="badge">5</span></li>
-		</ul>
-		
-	</div> 
-</div> <!-- posts -->
+
+@endforeach
+@endif
 
 @endsection

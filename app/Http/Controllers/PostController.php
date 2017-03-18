@@ -6,10 +6,23 @@ use App\Post;
 
 class PostController extends Controller
 {
+    public function index() {
+        $posts = Post::all();
+        foreach ($posts as $post) {
+            $post->user; // user information
+            $post->tag = 'idea'; // tags where type= 'post'
+            $post->comments_count = 4; // number of comments
+            $post->likes_count = 14; // number of likes
+        }
+        return view('posts', [
+            'posts' => $posts
+            ]);
+    }
+
     public function view($id){
 
         $this->authorize('view', Post::class);
-
+        
         return "view";
     }
 
