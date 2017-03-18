@@ -20,7 +20,7 @@ class PostCommentController extends Controller
         $list = "";
 
         foreach ($comments as $comment) {
-            $list = $list . "Comment $comment->id : $comment->description <br>\n";
+            $list = $list . "Comment $comment->id : $comment->content <br>\n";
         }
 
         return $list;
@@ -47,10 +47,10 @@ class PostCommentController extends Controller
     public function store(Request $request, Post $post)
     {
         $this->validate($request, [
-            'description' => 'required',
+            'content' => 'required',
         ]);
 
-        $comment = Comment::create(['user_id' => $request->user, 'post_id' => $post->id, 'description' => $request->description]);
+        $comment = Comment::create(['user_id' => $request->user, 'post_id' => $post->id, 'content' => $request->content]);
 
         return "Comment $comment->id created.";
     }
@@ -69,7 +69,7 @@ class PostCommentController extends Controller
             abort(404);
         }
 
-        return "Comment $comment->id : $comment->description";
+        return "Comment $comment->id : $comment->content";
     }
 
     /**
@@ -105,10 +105,10 @@ class PostCommentController extends Controller
         }
 
         $this->validate($request, [
-            'description' => 'required',
+            'content' => 'required',
         ]);				
 
-        $comment->description = $request->description;
+        $comment->content = $request->content;
         $comment->save();
 
         return "Comment $comment->id updated.";
