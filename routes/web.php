@@ -19,6 +19,7 @@ Route::get('/posts/{id}', 'PostController@view')->where('id', '[0-9]+');
 Route::get('/posts/create', 'PostController@create');
 Route::post('/posts', 'PostController@store');
 Route::delete('/posts/{id}/delete', 'PostController@delete')->where('id', '[0-9]+');
+Route::put('/posts/{id}/update', 'PostController@update')->where('id', '[0-9]+');
 
 Auth::routes();
 

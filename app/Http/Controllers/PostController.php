@@ -58,11 +58,22 @@ class PostController extends Controller
         return "Created post with <br><br>\n Post title: $post->title <br><br>\n Content: $post->description <br><br>\n Author ID: $post->user_id";
     }
 
-    public function update($id){
+    public function update(Request $request, $id){
 
-        $this->authorize('update', Post::class);
+        $post = Post::findOrFail($id);
 
-        return "update";
+        //$this->authorize('update', Post::class);
+
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'description' => 'required',
+        ]);
+
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->save();
+
+        return "Updated post with <br><br>\n Post title: $post->title <br><br>\n Content: $post->description <br><br>\n Author ID: $post->user_id";
     }
 
     public function delete($id){
