@@ -54,7 +54,7 @@
 <div class="posts">
 	<div>
 		<div>
-			<h3>Post title <small><span class="label label-success">Idea</span></small></h3>
+			<h3>Post title <small><span class="label label-primary">Project</span></small></h3>
 			<h5><strong>Kang Fei</strong> @kfwong</h5>
 		</div>
 	</div>
