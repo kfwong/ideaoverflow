@@ -81,7 +81,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return "Show form for editing comment";
+        return "Show form for editing post";
     }
 
     /**
