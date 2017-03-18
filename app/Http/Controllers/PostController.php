@@ -75,6 +75,17 @@ class PostController extends Controller
 
         return " Post title: $title <br><br>\n Content: $content <br><br>\n Author ID: $authorId";
     }
+		
+    /**
+     * Show the form for editing the specified post.
+     *
+     * @param  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        return "Show form for editing comment";
+    }
 
     /**
      * Update the specified post in storage.
