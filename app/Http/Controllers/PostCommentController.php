@@ -53,15 +53,12 @@ class PostCommentController extends Controller
     /**
      * Show the form for editing the specified comment.
      *
-     * @param  int  $postId
-     * @param  int  $commentId
+     * @param  Post     $post
+     * @param  Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit($postId, $commentId)
+    public function edit(Post $post, Comment $comment)
     {
-        $post = Post::findOrFail($postId);
-        $comment = Comment::findOrFail($commentId);
-
         // Make sure that the comment belongs to the post
         if ($comment->post_id != $post->id) {
             abort(404);
