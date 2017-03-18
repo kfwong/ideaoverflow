@@ -60,13 +60,10 @@ class PostController extends Controller
     /**
      * Display the specified post.
      *
-     * @param $id
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function show($id){
-
-        $post = Post::findOrFail($id);
-
+    public function show(Post $post){
         //$this->authorize('view', Post::class);
 
         $title = $post->title;
@@ -79,10 +76,10 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified post.
      *
-     * @param  $id
+     * @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
         return "Show form for editing comment";
     }
@@ -91,13 +88,10 @@ class PostController extends Controller
      * Update the specified post in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  $id
+     * @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
-
-        $post = Post::findOrFail($id);
-
+    public function update(Request $request, $post){
         //$this->authorize('update', Post::class);
 
         $this->validate($request, [
@@ -115,13 +109,10 @@ class PostController extends Controller
     /**
      * Remove the specified post from storage.
      *
-     * @param  $id
+     * @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id){
-
-        $post = Post::findOrFail($id);
-
+    public function destroy($post){
         //$this->authorize('delete', Post::class);
 
         $post->delete();
