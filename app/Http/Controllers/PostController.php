@@ -20,7 +20,7 @@ class PostController extends Controller
             abort(404);
         }
 
-        $this->authorize('view', Post::class);
+        //$this->authorize('view', Post::class);
 
         $title = $post->title;
         $content = $post->description;
@@ -36,7 +36,7 @@ class PostController extends Controller
      */
     public function create(){
 
-        $this->authorize('create', Post::class);
+        //$this->authorize('create', Post::class);
 
         return "Show the create form";
     }
