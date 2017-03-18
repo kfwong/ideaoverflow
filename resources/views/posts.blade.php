@@ -31,7 +31,7 @@
 		<ul class="list-inline">
 			<li><button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button></li>
 			<li><a href="{{'posts/'.$post->id}}">{{ $post->likes_count . ' Like' . ($post->likes_count > 1? 's':'')}}</a></li>
-			<li><a href="{{'posts/'.$post->id}}">{{ 'Comment' . ($post->comments_count > 1? 's' : '')}}</a> <span class="badge">{{ $post->comments_count }}</span></li>
+			<li><a href="{{'posts/'.$post->id}}">{{ $post->comments_count . ' Comment' . ($post->comments_count > 1? 's' : '')}}</a></li>
 		</ul>
 		
 	</div> 
