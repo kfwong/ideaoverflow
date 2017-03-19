@@ -17,5 +17,3 @@ Route::resource('posts', 'PostController');
 Route::resource('posts.comments', 'PostCommentController');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');
