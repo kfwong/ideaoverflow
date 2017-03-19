@@ -8,11 +8,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Ideaoverflow</a>
+      <a class="navbar-brand" href="/">Ideaoverflow</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><span class="navbar-text">Hi, Kang Fei!</span></li>
+      <ul class="nav navbar-nav navbar-right text-center">
+      @if(Auth::check())
         <li>
           <div class="dropdown">
             <button class="btn btn-success dropdown-toggle navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Write Post <span class="glyphicon glyphicon-edit"></span></button>
@@ -25,8 +25,24 @@
             </ul>
           </div>
         </li>
-        
-        <li><a href="#">Logout</a></li>
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            {{ 'Hi, '. ucfirst(Auth::user()->name) }} <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="/user/{{ Auth::user()->id }}">View my profile</a></li>
+            <li class="divider" role="separator"></li>
+            {{ Form::open(['url'=>'/logout']) }}
+            <div class="text-center">
+            <li>{{ Form::submit('Logout', ['class' => 'btn btn-sm   btn-danger']) }}</li>
+            </div>
+            {{ Form::close() }}
+          </ul>
+        </li>
+        @else
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Sign Up</a></li>
+        @endif
       </ul>
       <form class="navbar-form navbar-right">
         <input type="text" class="form-control" placeholder="Search for posts">
