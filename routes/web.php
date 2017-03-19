@@ -22,5 +22,3 @@ Route::put('/posts/{id}/update', 'PostController@update')->where('id', '[0-9]+')
 Route::resource('posts.comments', 'PostCommentController');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');

@@ -1,4 +1,8 @@
-@extends('layouts.app')
+@extends('template')
+
+@section('page-title', 'Ideaoverflow Login' )
+
+@section('content-title', 'Ideaoverflow')
 
 @section('content')
 <div class="container">
