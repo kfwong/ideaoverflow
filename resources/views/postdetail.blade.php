@@ -24,8 +24,8 @@
 <div class="posts">
 	<div>
 		<div>
-			<h3><a class="post-title" href="{{'posts/'.$post->id}}">{{ $post->title }}</a> <small><a href="" class="{{'post-tag '.$post->tag.'-tag'}}">{{ ucfirst($post->tag) }}</a></small></h3>
-			<h5><a class="user-name" href="{{ 'users/'.$post->user->id }}">{{$post->user->name}}</a> {{ '@'.$post->user->username }}</h5>
+			<h3>{{ $post->title }} <small><a href="" class="{{'post-tag '.$post->tag.'-tag'}}">{{ ucfirst($post->tag) }}</a></small></h3>
+			<h5><a class="user-name" href="{{ '/users/'.$post->user->id }}">{{$post->user->name}}</a> {{ '@'.$post->user->username }}</h5>
 		</div>
 	</div>
 	<div>
@@ -46,7 +46,7 @@
 	@foreach($post->comments as $comment) 
 	<div class="comment">
 		<div>
-			<h5><a class="user-name" href="{{ 'users/'.$comment->user->id }}">{{$comment->user->name}}</a> {{ '@'.$comment->user->username }}</h5>
+			<h5><a class="user-name" href="{{ '/users/'.$comment->user->id }}">{{$comment->user->name}}</a> {{ '@'.$comment->user->username }}</h5>
 		</div>
 		<div>
 			<p>{{$comment->description}}</p>
