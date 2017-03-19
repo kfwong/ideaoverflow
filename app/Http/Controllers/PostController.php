@@ -13,11 +13,11 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $posts = Post::all();
+        $posts = Post::withCount('comments')->get();
         foreach ($posts as $post) {
             $post->user; // user information
             $post->tag = 'idea'; // tags where type= 'post'
-            $post->comments_count = 4; // number of comments
+            // $post->comments_count = 4; // number of comments
             $post->likes_count = 14; // number of likes
         }
         return view('posts', [
@@ -66,11 +66,12 @@ class PostController extends Controller
     public function show(Post $post){
         //$this->authorize('view', Post::class);
 
-        $title = $post->title;
-        $content = $post->content;
-        $authorId = $post->user_id;
+        $post = Post::withCount('comments')->findOrFail($post); 
+        $post->likes_count = 10;
 
-        return " Post title: $title <br><br>\n Content: $content <br><br>\n Author ID: $authorId";
+        return view('postdetail', [
+            'post' => $post
+            ]);
     }
 		
     /**

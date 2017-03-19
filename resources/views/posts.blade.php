@@ -20,18 +20,17 @@
 <div class="posts">
 	<div>
 		<div>
-			<h3><a class="post-title" href="{{'posts/'.$post->id}}">{{ $post->title }}</a> <small><a href="" class="{{'post-tag '.$post->tag.'-tag'}}">{{ ucfirst($post->tag) }}</a></small></h3>
-			<h5><a class="user-name" href="{{ 'users/'.$post->user->id }}">{{$post->user->name}}</a> {{ '@'.$post->user->username }}</h5>
+			<h3><a class="post-title" href="{{'/posts/'.$post->id}}">{{ $post->title }}</a> <small><a href="" class="{{'post-tag '.$post->tag.'-tag'}}">{{ ucfirst($post->tag) }}</a></small></h3>
+			<h5><a class="user-name" href="{{ '/users/'.$post->user->id }}">{{$post->user->name}}</a> {{ '@'.$post->user->username }}</h5>
 		</div>
 	</div>
 	<div>
-		<p>{{ $post->description }}</p>
+		<p>{{ $post->content }}</p>
 	</div>
 	<div>
 		<ul class="list-inline">
-			<li><button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button></li>
-			<li><a href="{{'posts/'.$post->id}}">{{ $post->likes_count . ' Like' . ($post->likes_count > 1? 's':'')}}</a></li>
-			<li><a href="{{'posts/'.$post->id}}">{{ $post->comments_count . ' Comment' . ($post->comments_count > 1? 's' : '')}}</a></li>
+			<li><button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span>{{' Like | '.$post->likes_count}}</button></li>
+			<li><a href="{{'/posts/'.$post->id}}">{{ $post->comments_count . ' Comment' . ($post->comments_count > 1? 's' : '')}}</a></li>
 		</ul>
 		
 	</div> 
