@@ -12,12 +12,26 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function view($id){
+
+        $post = Post::withCount('comments')->findOrFail($id);
+
+        //$this->authorize('view', Post::class);
+        $post->likes_count = 10;
+
+        return view('postdetail', [
+            'post' => $post
+            ]);
+    }
+
+
     public function index() {
-        $posts = Post::all();
+        $posts = Post::withCount('comments')->get();
         foreach ($posts as $post) {
             $post->user; // user information
             $post->tag = 'idea'; // tags where type= 'post'
-            $post->comments_count = 4; // number of comments
+            // $post->comments_count = 4; // number of comments
             $post->likes_count = 14; // number of likes
         }
         return view('posts', [

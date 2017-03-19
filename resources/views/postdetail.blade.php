@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('page-title', 'Ideaoverflow')
+@section('page-title', $post->title )
 
 @section('content-title', 'Ideaoverflow')
 
@@ -13,9 +13,6 @@
 @endsection
 
 @section('content')
-
-@if(isset($posts))
-@foreach($posts as $post)
 
 <div class="posts">
 	<div>
@@ -30,13 +27,28 @@
 	<div>
 		<ul class="list-inline">
 			<li><button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span>{{' Like | '.$post->likes_count}}</button></li>
-			<li><a href="{{'posts/'.$post->id}}">{{ $post->comments_count . ' Comment' . ($post->comments_count > 1? 's' : '')}}</a></li>
+			<li>{{ $post->tags }}</li>
 		</ul>
 		
 	</div> 
 </div> <!-- posts -->
 
-@endforeach
-@endif
+<div>
+	<h3>{{'Comments ('.$post->comments_count.')'}}</h3>
+	@if($post->comments_count > 0)
+		@foreach($post->comments as $comment) 
+			<div class="comment">
+				<div>
+				<h5><a class="user-name" href="{{ 'users/'.$comment->user->id }}">{{$comment->user->name}}</a> {{ '@'.$comment->user->username }}</h5>
+				</div>
+				<div>
+					<p>{{$comment->description}}</p>
+				</div>
+			</div>
+		@endforeach
+	@else
+		<p>No comments</p>
+	@endif
+</div>
 
 @endsection
