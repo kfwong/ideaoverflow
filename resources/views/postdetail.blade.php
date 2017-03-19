@@ -52,9 +52,10 @@
 </div>
 
 <div id="form-comment-container">
+	<h5><span class="user-name">Kang Fei</span> @kfwong</h5>
 	{{ Form::open(['class' => 'form-inline']) }}
 	<div class="form-group">
-	{{ Form::textarea('content', 'Write a comment...', ['class' => 'form-control', 'rows' => '3', 'id' => 'form-comment']) }}
+		{{ Form::textarea('content', 'Write a comment...', ['class' => 'form-control', 'rows' => '3', 'id' => 'form-comment']) }}
 		{{ Form::submit('Submit', ['class'=>'btn btn-default', 'id' => 'form-comment-submit']) }}
 	</div>
 	{{ Form::close() }}
