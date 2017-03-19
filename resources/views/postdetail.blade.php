@@ -25,7 +25,7 @@
 	<div>
 		<div>
 			<h3>{{ $post->title }} <small><a href="" class="{{'post-tag '.$post->tag.'-tag'}}">{{ ucfirst($post->tag) }}</a></small></h3>
-			<h5><a class="user-name" href="{{ '/users/'.$post->user->id }}">{{$post->user->name}}</a> {{ '@'.$post->user->username }}</h5>
+			<h5><a class="user-name" href="{{ '/users/'.$post->user->id }}">{{ucfirst($post->user->name)}}</a> {{ '@'.$post->user->username }}</h5>
 		</div>
 	</div>
 	<div>
@@ -46,7 +46,7 @@
 	@foreach($post->comments as $comment) 
 	<div class="comment">
 		<div>
-			<h5><a class="user-name" href="{{ '/users/'.$comment->user->id }}">{{$comment->user->name}}</a> {{ '@'.$comment->user->username }}</h5>
+			<h5><a class="user-name" href="{{ '/users/'.$comment->user->id }}">{{ucfirst($comment->user->name)}}</a> {{ '@'.$comment->user->username }}</h5>
 		</div>
 		<div>
 			<p>{{$comment->description}}</p>
@@ -59,7 +59,7 @@
 </div>
 
 <div id="form-comment-container">
-	<h5><span class="user-name">{{ Auth::user()->name }}</span>{{ ' @'.Auth::user()->username }}</h5>
+	<h5><span class="user-name">{{ ucfirst(Auth::user()->name) }}</span>{{ ' @'.Auth::user()->username }}</h5>
 	{{ Form::open(['class' => 'form-inline', 'action' => ['PostCommentController@store', $post->id]]) }}
 	<div class="form-group">
 		{{ Form::textarea('description', '', ['class' => 'form-control', 'rows' => '3', 'id' => 'form-comment', 'placeholder' => 'Write a comment...']) }}
