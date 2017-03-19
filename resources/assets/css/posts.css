@@ -1,6 +1,6 @@
 .posts {
 	font-size:1.2em;
-	padding: 0em 1em 1em 1em;
+	padding-bottom: 1em;
 	border-bottom: 1px lightgray solid;
 }
 
@@ -40,3 +40,21 @@
 .problem-tag {
 	background-color: #f0ad4e;
 }
+
+.comment {
+	border-bottom:1px solid lightgray;
+}
+
+.form-inline .form-control {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+ }
+
+ #form-comment {
+ 	width: 70%;
+ }
+
+ #form-comment-container {
+ 	padding-top: 1em;
+ }
