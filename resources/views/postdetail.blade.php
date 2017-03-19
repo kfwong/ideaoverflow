@@ -14,6 +14,13 @@
 
 @section('content')
 
+@if(Session::has('message'))
+<div class="alert alert-success alert-dismissable fade in">
+	<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+	{{ Session::get('message') }}
+</div>
+@endif
+
 <div class="posts">
 	<div>
 		<div>
@@ -52,10 +59,10 @@
 </div>
 
 <div id="form-comment-container">
-	<h5><span class="user-name">Kang Fei</span> @kfwong</h5>
-	{{ Form::open(['class' => 'form-inline']) }}
+	<h5><span class="user-name">{{ Auth::user()->name }}</span>{{ ' @'.Auth::user()->username }}</h5>
+	{{ Form::open(['class' => 'form-inline', 'action' => ['PostCommentController@store', $post->id]]) }}
 	<div class="form-group">
-		{{ Form::textarea('content', 'Write a comment...', ['class' => 'form-control', 'rows' => '3', 'id' => 'form-comment']) }}
+		{{ Form::textarea('description', '', ['class' => 'form-control', 'rows' => '3', 'id' => 'form-comment', 'placeholder' => 'Write a comment...']) }}
 		{{ Form::submit('Submit', ['class'=>'btn btn-default', 'id' => 'form-comment-submit']) }}
 	</div>
 	{{ Form::close() }}

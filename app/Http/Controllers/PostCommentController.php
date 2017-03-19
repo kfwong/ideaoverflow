@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Comment;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
+
 
 class PostCommentController extends Controller
 {
@@ -50,9 +54,11 @@ class PostCommentController extends Controller
             'description' => 'required',
         ]);
 
-        $comment = Comment::create(['user_id' => $request->user, 'post_id' => $post->id, 'description' => $request->description]);
+        $comment = Comment::create(['user_id' => Auth::user()->id, 'post_id' => $post->id, 'description' => $request->description]);
 
-        return "Comment $comment->id created.";
+         Session::flash('message', "Comment added successfully.");
+
+        return Redirect::to('posts/' . $post->id);
     }
 
     /**
