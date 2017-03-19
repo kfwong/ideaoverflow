@@ -54,7 +54,7 @@ class PostCommentController extends Controller
             'content' => 'required',
             ]);
 
-        $comment = Comment::create(['user_id' => Auth::user()->id, 'post_id' => $post->id, 'description' => $request->description]);
+        $comment = Comment::create(['user_id' => Auth::user()->id, 'post_id' => $post->id, 'content' => $request->content]);
 
         Session::flash('message', "Comment added successfully.");
         

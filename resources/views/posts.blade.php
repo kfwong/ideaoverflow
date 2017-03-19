@@ -25,7 +25,7 @@
 		</div>
 	</div>
 	<div>
-		<p>{{ $post->description }}</p>
+		<p>{{ $post->content }}</p>
 	</div>
 	<div>
 		<ul class="list-inline">
