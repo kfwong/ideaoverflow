@@ -16,23 +16,22 @@ class PostController extends Controller
      */
     public function view($id){
 
-        $post = Post::findOrFail($id);
+        $post = Post::withCount('comments')->findOrFail($id);
 
         //$this->authorize('view', Post::class);
+        $post->likes_count = 10;
 
-        $title = $post->title;
-        $content = $post->description;
-        $authorId = $post->user_id;
-
-        return " Post title: $title <br><br>\n Content: $content <br><br>\n Author ID: $authorId";
+        return view('postdetail', [
+            'post' => $post
+            ]);
     }
 
     public function index() {
-        $posts = Post::all();
+        $posts = Post::withCount('comments')->get();
         foreach ($posts as $post) {
             $post->user; // user information
             $post->tag = 'idea'; // tags where type= 'post'
-            $post->comments_count = 4; // number of comments
+            // $post->comments_count = 4; // number of comments
             $post->likes_count = 14; // number of likes
         }
         return view('posts', [
