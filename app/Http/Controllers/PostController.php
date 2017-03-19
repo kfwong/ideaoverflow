@@ -12,20 +12,6 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function view($id){
-
-        $post = Post::withCount('comments')->findOrFail($id);
-
-        //$this->authorize('view', Post::class);
-        $post->likes_count = 10;
-
-        return view('postdetail', [
-            'post' => $post
-            ]);
-    }
-
-
     public function index() {
         $posts = Post::withCount('comments')->get();
         foreach ($posts as $post) {
@@ -80,11 +66,12 @@ class PostController extends Controller
     public function show(Post $post){
         //$this->authorize('view', Post::class);
 
-        $title = $post->title;
-        $content = $post->content;
-        $authorId = $post->user_id;
+        $post = Post::withCount('comments')->findOrFail($post); 
+        $post->likes_count = 10;
 
-        return " Post title: $title <br><br>\n Content: $content <br><br>\n Author ID: $authorId";
+        return view('postdetail', [
+            'post' => $post
+            ]);
     }
 		
     /**
