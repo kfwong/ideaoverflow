@@ -52,11 +52,12 @@ class PostCommentController extends Controller
     {
         $this->validate($request, [
             'content' => 'required',
-        ]);
+            ]);
 
         $comment = Comment::create(['user_id' => Auth::user()->id, 'post_id' => $post->id, 'description' => $request->description]);
 
-         Session::flash('message', "Comment added successfully.");
+        Session::flash('message', "Comment added successfully.");
+        
 
         return Redirect::to('posts/' . $post->id);
     }
@@ -112,7 +113,7 @@ class PostCommentController extends Controller
 
         $this->validate($request, [
             'content' => 'required',
-        ]);				
+            ]);				
 
         $comment->content = $request->content;
         $comment->save();
