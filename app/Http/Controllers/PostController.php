@@ -13,9 +13,10 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $posts = Post::withCount('comments')->get();
+        $posts = Post::withCount('comments')->with('user')->get();
+
         foreach ($posts as $post) {
-            $post->user; // user information
+            // $post->user; // user information
             $post->tag = 'idea'; // tags where type= 'post'
             // $post->comments_count = 4; // number of comments
             $post->likes_count = 14; // number of likes
