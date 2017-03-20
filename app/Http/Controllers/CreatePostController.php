@@ -15,4 +15,9 @@ class CreatePostController extends Controller
     {
         return view('createpost');
     }
+
+    public function store()
+    {
+        return redirect()->action('PostController@index');
+    }
 }
