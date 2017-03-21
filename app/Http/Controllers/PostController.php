@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class PostController extends Controller
 {
@@ -13,14 +14,10 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $posts = Post::withCount('comments')->with('user')->get();
+        $posts = Post::withCount('comments')
+            ->with('user')
+            ->get();
 
-        foreach ($posts as $post) {
-            // $post->user; // user information
-            $post->tag = 'idea'; // tags where type= 'post'
-            // $post->comments_count = 4; // number of comments
-            $post->likes_count = 14; // number of likes
-        }
         return view('posts', [
             'posts' => $posts
         ]);
@@ -31,11 +28,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
 
         //$this->authorize('create', Post::class);
 
-        return "Show form for creating post";
+        return view('welcome');
     }
 
     /**
@@ -47,15 +44,24 @@ class PostController extends Controller
     public function store(Request $request){
 
         //$this->authorize('create', Post::class);
-
+        /*
         $this->validate($request, [
             'title' => 'required|max:255',
-            'content' => 'required',
+            'body' => 'required',
+        ]);*/
+
+        $post = new Post();
+
+        $post->fill($request->all());
+
+        $post->save();
+
+        Session::flash('message', 'Post created!');
+
+        return $post;
+        return view('welcome', [
+            'post' => $post
         ]);
-
-        $post = Post::create(['user_id' => $request->user, 'title' => $request->title, 'content' => $request->content]);
-
-        return "Post $post->id created.";
     }
 
     /**
@@ -64,15 +70,16 @@ class PostController extends Controller
      * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post){
+    public function show($id){
         //$this->authorize('view', Post::class);
 
-        $post = Post::withCount('comments')->findOrFail($post); 
-        $post->likes_count = 10;
+        $post = Post::withCount('comments')
+            ->with('user')
+            ->findOrFail($id);
 
         return view('postdetail', [
             'post' => $post
-            ]);
+        ]);
     }
 		
     /**
@@ -81,9 +88,11 @@ class PostController extends Controller
      * @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Request $request, Post $post)
     {
-        return "Show form for editing post";
+        return view('welcome', [
+            'post' => $post
+        ]);
     }
 
     /**
@@ -98,14 +107,20 @@ class PostController extends Controller
 
         $this->validate($request, [
             'title' => 'required|max:255',
-            'content' => 'required',
+            'body' => 'required',
         ]);
 
-        $post->title = $request->title;
-        $post->content = $request->content;
+        $post->fill($request->all());
+
         $post->save();
 
-        return "Post $post->id updated.";
+        Session::flash('message', 'Post updated!');
+
+        return $post;
+
+        return view('postdetail', [
+            'post' => $post
+        ]);
     }
 
     /**
