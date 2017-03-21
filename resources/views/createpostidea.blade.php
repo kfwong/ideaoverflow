@@ -14,17 +14,17 @@
 
 @section('content')
 
-<div class="createpost">
-<h1>Create a New Post!</h1>
+<div class="createpostidea">
+<h1>Create a New Idea!</h1>
 
 {!! Form::open() !!}
 
 <div class="form-group">
-    {!! Form::label('Post title') !!}
-    {!! Form::text('post_title', null, 
+    {!! Form::label('Idea title') !!}
+    {!! Form::text('idea_title', null, 
         array('required', 
               'class'=>'form-control', 
-              'placeholder'=>'Post title')) !!}
+              'placeholder'=>'Idea title')) !!}
 </div>
 
 <div class="form-group">
