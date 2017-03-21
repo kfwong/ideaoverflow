@@ -15,24 +15,24 @@
 @section('content')
 
 <div class="createpostidea">
-<h1>Create a New Idea!</h1>
+<h1>Create a New {{$type}} !</h1>
 
 {!! Form::open() !!}
 
 <div class="form-group">
-    {!! Form::label('Idea title') !!}
-    {!! Form::text('idea_title', null, 
+    {!! Form::label($type.' title') !!}
+    {!! Form::text('post_title', null, 
         array('required', 
               'class'=>'form-control', 
-              'placeholder'=>'Idea title')) !!}
+              'placeholder'=>$type.' title')) !!}
 </div>
 
 <div class="form-group">
-    {!! Form::label('Idea Description') !!}
-    {!! Form::textarea('idea_description', null, 
+    {!! Form::label($type.' description') !!}
+    {!! Form::textarea('post_description', null, 
         array('required', 
               'class'=>'form-control', 
-              'placeholder'=>'Idea Description')) !!}
+              'placeholder'=>$type.' description')) !!}
 </div>
 
 <div class="form-group">
