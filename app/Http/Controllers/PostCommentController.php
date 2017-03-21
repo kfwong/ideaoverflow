@@ -12,23 +12,6 @@ use Illuminate\Support\Facades\Redirect;
 
 class PostCommentController extends Controller
 {
-    /**
-     * Display a list of all comments for the specified post.
-     *
-     * @param  Post     $post
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Post $post)
-    {
-        $comments = $post->comments;
-        $list = "";
-
-        foreach ($comments as $comment) {
-            $list = $list . "Comment $comment->id : $comment->content <br>\n";
-        }
-
-        return $list;
-    }
 
     /**
      * Show the form for creating a new comment.

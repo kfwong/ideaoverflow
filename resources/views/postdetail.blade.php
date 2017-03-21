@@ -45,12 +45,12 @@
         <p>No comments</p>
     @else
         @foreach($post->comments as $comment)
-        <div class="comment">
+        <div class="comment comment-{{$comment->id}}">
             <div>
                 <h5><a class="user-name" href="{{ '/users/'.$comment->user->id }}">{{ucfirst($comment->user->name)}}</a> {{ '@'.$comment->user->username }}</h5>
             </div>
             <div>
-                <p>{{$comment->content}}</p>
+                <p>{{$comment->body}}</p>
             </div>
         </div>
         @endforeach
@@ -58,13 +58,12 @@
 </div>
 
 <div id="form-comment-container">
-
 	@if(Auth::check())
         <h5><span class="user-name">{{ ucfirst(Auth::user()->name) }}</span>{{ ' @'.Auth::user()->username }}</h5>
 
-        {{ Form::open(['class' => 'form-inline', 'action' => ['PostCommentController@store', $post]]) }}
+        {{ Form::open(['class' => 'form-inline', 'action' => ['CommentController@store', $post]]) }}
         <div class="form-group">
-            {{ Form::textarea('content', '', ['class' => 'form-control', 'rows' => '3', 'id' => 'form-comment', 'placeholder' => 'Write a comment...']) }}
+            {{ Form::textarea('body', '', ['class' => 'form-control', 'rows' => '3', 'id' => 'form-comment', 'placeholder' => 'Write a comment...']) }}
             {{ Form::submit('Submit', ['class'=>'btn btn-default', 'id' => 'form-comment-submit']) }}
         </div>
         {{ Form::close() }}
