@@ -11,9 +11,23 @@ class CreatePostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('createpostidea');
+    public function index(Request $request)
+    {   
+        $url = $request->path();
+        # TODO @annahe: make the cases to constants, this is so ratchet
+        switch($url) {
+            case "createpostidea":
+                return view('createpost', ['type'=>'Idea']);
+                break;
+            case "createpostproblem":
+                return view('createpost', ['type'=>'Problem']);
+                break;
+            case "createpostproject":
+                return view('createpost', ['type'=>'Project']);
+                break;
+            default:
+                abort(404);
+        }
     }
 
     public function store()
