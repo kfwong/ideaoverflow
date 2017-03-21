@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class PostController extends Controller
@@ -14,6 +15,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
+
         $posts = Post::withCount('comments')
             ->with('user')
             ->get();
@@ -28,9 +30,8 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request){
-
-        //$this->authorize('create', Post::class);
+    public function create(){
+        $this->authorize('create', Post::class);
 
         return view('welcome');
     }
@@ -43,14 +44,16 @@ class PostController extends Controller
      */
     public function store(Request $request){
 
-        //$this->authorize('create', Post::class);
-        /*
+        $this->authorize('store', Post::class);
+
         $this->validate($request, [
             'title' => 'required|max:255',
             'body' => 'required',
-        ]);*/
+        ]);
 
         $post = new Post();
+
+        $post->user_id = Auth::user()->id;
 
         $post->fill($request->all());
 
@@ -58,7 +61,6 @@ class PostController extends Controller
 
         Session::flash('message', 'Post created!');
 
-        return $post;
         return view('welcome', [
             'post' => $post
         ]);
@@ -71,10 +73,9 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
-        //$this->authorize('view', Post::class);
 
         $post = Post::withCount('comments')
-            ->with('user')
+            ->with('user', 'comments')
             ->findOrFail($id);
 
         return view('postdetail', [
@@ -88,8 +89,14 @@ class PostController extends Controller
      * @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Post $post)
+    public function edit($id)
     {
+        $post = Post::withCount('comments')
+            ->with('user')
+            ->findOrFail($id);
+
+        $this->authorize('edit', $post);
+
         return view('welcome', [
             'post' => $post
         ]);
@@ -102,21 +109,24 @@ class PostController extends Controller
      * @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post){
-        //$this->authorize('update', Post::class);
+    public function update(Request $request, $id){
 
         $this->validate($request, [
             'title' => 'required|max:255',
             'body' => 'required',
         ]);
 
+        $post = Post::withCount('comments')
+            ->with('user')
+            ->findOrFail($id);
+
+        $this->authorize('update', $post);
+
         $post->fill($request->all());
 
         $post->save();
 
         Session::flash('message', 'Post updated!');
-
-        return $post;
 
         return view('postdetail', [
             'post' => $post
@@ -129,11 +139,15 @@ class PostController extends Controller
      * @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post){
+    public function destroy($id){
         //$this->authorize('delete', Post::class);
+
+        $post = Post::findOrFail($id);
+
+        $this->authorize('destroy', $post);
 
         $post->delete();
 
-        return "Post $post->id deleted.";
+        return "Post $post->id deleted!";
     }
 }
