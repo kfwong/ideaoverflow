@@ -12,7 +12,22 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index(Request $request) {
+
+        $url = $request->path();
+        # TODO @annahe: make the cases to constants, this is so ratchet
+        switch($url) {
+            case "createpostidea":
+                return view('createpost', ['type'=>'Idea']);
+                break;
+            case "createpostproblem":
+                return view('createpost', ['type'=>'Problem']);
+                break;
+            case "createpostproject":
+                return view('createpost', ['type'=>'Project']);
+                break;
+        }
+
         $posts = Post::withCount('comments')->with('user')->get();
 
         foreach ($posts as $post) {

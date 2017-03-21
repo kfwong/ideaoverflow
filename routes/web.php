@@ -15,5 +15,7 @@ Route::get('/', 'PostController@index');
 
 Route::resource('posts', 'PostController');
 Route::resource('posts.comments', 'PostCommentController');
-
+Route::resource('createpostidea', "PostController");
+Route::resource("createpostproblem", "PostController");
+Route::resource("createpostproject", "PostController");
 Auth::routes();
