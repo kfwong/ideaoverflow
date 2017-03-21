@@ -19,9 +19,9 @@
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
               <li><a href="createpostidea">Post an idea</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Post a problem</a></li>
+              <li><a href="createpostproblem">Post a problem</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Post a project</a></li>
+              <li><a href="createpostproject">Post a project</a></li>
             </ul>
           </div>
         </li>
