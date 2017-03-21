@@ -12,3 +12,5 @@ Homestead.yaml
 /public/img
 /public/sass
 .htaccess
+Vagrantfile
+.vagrant/*
