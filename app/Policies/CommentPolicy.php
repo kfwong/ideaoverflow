@@ -11,28 +11,16 @@ class CommentPolicy
 {
     use HandlesAuthorization;
 
-    public function before($user, $ability){
+    public function before($user, $ability)
+    {
         // this authorization check execute before all other checks
         // if matched, then it is early returned
         // otherwise, the policy fall through other checks
 
         // allow all access if user is admin
-        if($user->role == 'admin'){
+        if ($user->role == 'admin') {
             return true;
         }
-    }
-
-    /**
-     * Determine whether the user can view the comment.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Comment  $comment
-     * @return mixed
-     */
-    public function view(User $user, Comment $comment)
-    {
-        // everybody can view the comment
-        return true;
     }
 
     /**
@@ -41,7 +29,7 @@ class CommentPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function store(User $user)
     {
         // only if user is logged in
         if(Auth::check()){
@@ -74,7 +62,7 @@ class CommentPolicy
      * @param  \App\Comment  $comment
      * @return mixed
      */
-    public function delete(User $user, Comment $comment)
+    public function destroy(User $user, Comment $comment)
     {
         // only if it is comment owner
         if($user->id == $comment->user_id){

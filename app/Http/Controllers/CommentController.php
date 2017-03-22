@@ -20,7 +20,7 @@ class CommentController extends Controller
      */
     public function store(Request $request, Post $post)
     {
-        Auth::loginUsingId(1);
+        $this->authorize('store', Comment::class);
 
         $this->validate($request, [
             'body' => 'required',
@@ -36,8 +36,6 @@ class CommentController extends Controller
         $comment->save();
 
         Session::flash('message', "Comment added successfully.");
-
-        Auth::logout();
 
         return Redirect::to('/posts/' . $post->id);
     }
@@ -66,14 +64,14 @@ class CommentController extends Controller
      */
     public function update(Request $request, $post_id, Comment $comment)
     {
-
-        Auth::loginUsingId(1);
+        $this->authorize('update', $comment);
 
         $this->validate($request, [
             'body' => 'required',
         ]);
 
         $comment->fill($request->all());
+
         $comment->user_id = Auth::user()->id;
         $comment->post_id = $post_id;
 
@@ -81,7 +79,6 @@ class CommentController extends Controller
 
         Session::flash('message', 'Comment' . $comment->id . 'updated!');
 
-        //Auth::logout();
 
         return Redirect::to('/posts/'. $post_id);
     }
@@ -95,6 +92,7 @@ class CommentController extends Controller
      */
     public function destroy(Post $post, Comment $comment)
     {
+        $this->authorize('destroy', $comment);
 
         $comment->delete();
 

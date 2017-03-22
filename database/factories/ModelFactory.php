@@ -32,6 +32,7 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
         'title' => $faker->name,
         'body' => $faker->paragraph(2, true),
         'user_id' => $user_id,
+        'type' => $faker->randomElement(['problem', 'idea', 'project'])
     ];
 });
 
