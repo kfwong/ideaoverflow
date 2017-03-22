@@ -58,7 +58,7 @@
 </div>
 
 <div id="form-comment-container">
-	@if(Auth::check())
+	@can('create', App\Comment::class)
         <h5><span class="user-name">{{ ucfirst(Auth::user()->name) }}</span>{{ ' @'.Auth::user()->username }}</h5>
 
         {{ Form::open(['class' => 'form-inline', 'action' => ['CommentController@store', $post]]) }}

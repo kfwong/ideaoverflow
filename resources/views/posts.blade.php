@@ -25,11 +25,11 @@
 		</div>
 	</div>
 	<div>
-		<p>{{ $post->content }}</p>
+		<p>{{ $post->body }}</p>
 	</div>
 	<div>
 		<ul class="list-inline">
-			<li><button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span>{{' Like | '.$post->likes_count}}</button></li>
+			<li><button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span>{{' Like | 4'}}</button></li>
 			<li><a href="{{'/posts/'.$post->id}}">{{ $post->comments_count . ' Comment' . ($post->comments_count > 1? 's' : '')}}</a></li>
 		</ul>
 		
