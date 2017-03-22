@@ -59,6 +59,7 @@
 </div>
 
 <div id="form-comment-container">
+	@if(Auth::check())
 	<h5><span class="user-name">{{ ucfirst(Auth::user()->name) }}</span>{{ ' @'.Auth::user()->username }}</h5>
 	{{ Form::open(['class' => 'form-inline', 'action' => ['PostCommentController@store', $post]]) }}
 	<div class="form-group">
@@ -66,6 +67,7 @@
 		{{ Form::submit('Submit', ['class'=>'btn btn-default', 'id' => 'form-comment-submit']) }}
 	</div>
 	{{ Form::close() }}
+	@else
+	<p><a href="/login">Login</a> to post your comment</p> 
+	@endif
 </div>
-
-@endsection
