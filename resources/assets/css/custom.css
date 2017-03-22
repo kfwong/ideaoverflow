@@ -5,3 +5,7 @@
 footer {
 	text-align: center
 }
+
+img.img-circle {
+    border-radius: 50%;
+}
