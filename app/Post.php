@@ -24,7 +24,8 @@ class Post extends Model
     protected $fillable = [
         'user_id',
         'title',
-        'content'
+        'body',
+        'type'
     ];
 
     public function comments(){
@@ -36,7 +37,7 @@ class Post extends Model
     }
 
     public function tags(){
-        return $this->belongsTo('App\Tag');
+        return $this->belongsToMany('App\Tag');
     }
 
     public function likedByUsers(){

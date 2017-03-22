@@ -14,6 +14,9 @@
 Route::get('/', 'PostController@index');
 
 Route::resource('posts', 'PostController');
-Route::resource('posts.comments', 'PostCommentController');
+
+Route::resource('posts.comments', 'CommentController', ['except' => [
+    'index', 'show', 'create'
+]]);
 
 Auth::routes();

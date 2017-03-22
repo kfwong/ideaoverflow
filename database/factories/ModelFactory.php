@@ -30,8 +30,9 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
     $user_id = $faker->randomNumber(2);
     return [
         'title' => $faker->name,
-        'content' => $faker->paragraph(2, true),
+        'body' => $faker->paragraph(2, true),
         'user_id' => $user_id,
+        'type' => $faker->randomElement(['problem', 'idea', 'project'])
     ];
 });
 
@@ -40,7 +41,7 @@ $factory->define(App\Comment::class, function (Faker\Generator $faker) {
     $user_id = $faker->randomNumber(2);
     $post_id = $faker->randomNumber(2);
     return [
-        'content' => $faker->paragraph(2, true),
+        'body' => $faker->paragraph(2, true),
         'user_id' => $user_id,
         'post_id' => $post_id,
     ];

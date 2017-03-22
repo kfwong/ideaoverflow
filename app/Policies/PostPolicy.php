@@ -6,34 +6,22 @@ use App\User;
 use App\Post;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PostPolicy
 {
     use HandlesAuthorization;
 
     public function before($user, $ability){
-        // this authorization check execute before all other checks
+        // this authorization execute before all other checks
         // if matched, then it is early returned
-        // otherwise, the policy fall through other checks
 
         // allow all access if user is admin
         if($user->role == 'admin'){
             return true;
         }
-    }
 
-    /**
-     * Determine whether the user can view the post.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Post  $post
-     * @return mixed
-     */
-    public function view(User $user, Post $post)
-    {
-        // everybody can view the post
-        return true;
-
+        // otherwise, the policy fall through other checks
     }
 
     /**
@@ -44,13 +32,33 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        // only if user is logged in
+        // only allow login user
         if(Auth::check()){
             return true;
         }
 
         return false;
 
+    }
+
+    public function store(User $user){
+
+        // only allow login user
+        if(Auth::check()){
+            return true;
+        }
+
+        return false;
+    }
+
+    public function edit(User $user, Post $post){
+
+        // allow if it is post owner
+        if($user->id == $post->user_id){
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -77,7 +85,7 @@ class PostPolicy
      * @param  \App\Post  $post
      * @return mixed
      */
-    public function delete(User $user, Post $post)
+    public function destroy(User $user, Post $post)
     {
         // allow if it is post owner
         if( $user->id == $post->user_id){
@@ -86,4 +94,5 @@ class PostPolicy
 
         return false;
     }
+
 }
