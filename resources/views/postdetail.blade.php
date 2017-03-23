@@ -66,7 +66,7 @@
 	@endforeach
 	@endif
 </div>
-@can('create', App\Comment::class)
+@can('store', App\Comment::class)
 <div class="panel panel-default">
 	{{ Form::open(['class' => 'form-horizontal', 'action' => ['CommentController@store', $post]]) }}
 	<div class="panel-body">
@@ -76,7 +76,6 @@
 	<div class="panel-footer">
 		{{ Form::submit('Submit', ['class'=>'btn btn-default', 'id' => 'form-comment-submit']) }}
 	</div>
-
 	{{ Form::close() }}
 </div>
 @else
