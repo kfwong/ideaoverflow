@@ -39,10 +39,11 @@
 
 </div> <!-- posts -->
 
+<!-- Comments Section -->
 <div>
 	<h3>{{'Comments ('.$post->comments_count.')'}}</h3>
 	@if($post->comments_count <= 0)
-	<p>No comments</p>
+		<p>No comments</p>
 	@else
 	@foreach($post->comments as $comment)
 	<div class="panel panel-default">
@@ -66,6 +67,9 @@
 	@endforeach
 	@endif
 </div>
+<!-- End Comments Section -->
+
+<!-- Post Comments -->
 @can('store', App\Comment::class)
 <div class="panel panel-default">
 	{{ Form::open(['class' => 'form-horizontal', 'action' => ['CommentController@store', $post]]) }}
@@ -81,5 +85,7 @@
 @else
 <p><a href="/login">Login</a> to post your comment</p>
 @endif
+<!-- End Post Comments -->
+
 
 @endsection
