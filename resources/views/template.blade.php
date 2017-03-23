@@ -9,7 +9,8 @@
 
     <!-- child specific stylesheets -->
     @yield('stylesheet')
-    {{ Html::style('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css') }}
+    {{ Html::style('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') }}
+    {{ Html::style('css/bootstrap.css') }}
     {{ Html::style('css/custom.css') }}
 
     <!-- TODO: @annahe change the appropriate things  -->
@@ -30,7 +31,7 @@
     </div>
 </div>
 
-<div class="row">
+<div id="content" class="row">
 
     <main class="col-xs-12 col-md-offset-1 col-md-10">
 

@@ -1,7 +1,11 @@
-body {
-	padding-top: 70px;
+#content {
+	margin-top: 70px;
 }
 
 footer {
 	text-align: center
+}
+
+img.img-circle {
+    border-radius: 50%;
 }

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+
 .posts {
 	font-size:1.2em;
 	padding-bottom: 1em;
@@ -5,60 +7,66 @@
 }
 
 .user-name {
-	color:black;
-	font-weight: bold;
+	color:white;
+	font-size: 0.8em;
+	font-family: 'Titillium Web', sans-serif;
 }
 
 .post-title {
-	color:black;
+	color : white;
+	font-family: 'Titillium Web', sans-serif;
+	font-size:0.9em;
 }
 
 .post-tag {
+	position: relative;
 	display: inline-block;
-	padding: 3px 4px;
-	font-size: 12px;
-	font-weight: 600;
+	padding: .4em .5em;
+	margin: 2px 2px 2px 0;
+	font-size: 11px;
 	line-height: 1;
-	color: #fff;
+	white-space: nowrap;
+	text-decoration: none;
+	text-align: center;
+	border-width: 1px;
+	border-style: solid;
 	border-radius: 2px;
-	box-shadow: inset 0 -1px 0 rgba(27,31,35,0.12);
+	transition: all .15s ease-in-out;
+	color: #ffffff;
+	background-color: #7a8288;
+	border-color: #7a8288;
 }
 
 .post-tag:hover {
-	text-decoration: none;
-	color: #fff;
+	color: #33658a;
+	background-color: #62686d;
+	border-color: #3e4245;
 }
 
-.idea-tag {
-	background-color: #5cb85c;
+.post-tag a:hover {
+	text-decoration:none;
 }
 
-.project-tag {
-	background-color: #337ab7;
+#tags-container {
+	display: inline;
+	float: right;
 }
-
-.problem-tag {
-	background-color: #f0ad4e;
-}
-
 .comment {
 	border-bottom:1px solid lightgray;
 }
 
 .form-inline .form-control {
-    display: inline-block;
-    width: auto;
-    vertical-align: middle;
- }
+	display: inline-block;
+	width: auto;
+	vertical-align: middle;
+}
 
 .form-group {
 	width: 100%;
 }
 
- #form-comment {
- 	width: 70%;
- }
-
- #form-comment-container {
- 	padding-top: 1em;
- }
+#form-comment {
+	width: 100%;
+	height: 200px;
+	resize: none;
+}

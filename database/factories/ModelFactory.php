@@ -29,7 +29,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Post::class, function (Faker\Generator $faker) {
     $user_id = $faker->randomNumber(2);
     return [
-        'title' => $faker->name,
+        'title' => $faker->sentence,
         'body' => $faker->paragraph(2, true),
         'user_id' => $user_id,
         'type' => $faker->randomElement(['problem', 'idea', 'project'])
