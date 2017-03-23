@@ -95,4 +95,13 @@ class PostPolicy
         return false;
     }
 
+    public function like(User $user){
+        // only allow login user
+        if(Auth::check()){
+            return true;
+        }
+
+        return false;
+    }
+
 }
