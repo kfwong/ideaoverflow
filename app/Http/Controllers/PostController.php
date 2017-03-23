@@ -17,6 +17,7 @@ class PostController extends Controller
     public function index() {
 
         $posts = Post::withCount('comments')
+            ->withCount('likes')
             ->with('user')
             ->get();
 
@@ -75,6 +76,7 @@ class PostController extends Controller
     public function show($id){
 
         $post = Post::withCount('comments')
+            ->withCount('likes')
             ->with('user', 'comments')
             ->findOrFail($id);
 
@@ -92,6 +94,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::withCount('comments')
+            ->withCount('likes')
             ->with('user')
             ->findOrFail($id);
 
@@ -117,6 +120,7 @@ class PostController extends Controller
         ]);
 
         $post = Post::withCount('comments')
+            ->withCount('likes')
             ->with('user')
             ->findOrFail($id);
 
@@ -149,5 +153,19 @@ class PostController extends Controller
         $post->delete();
 
         return "Post $post->id deleted!";
+    }
+
+    public function like($id){
+        $this->authorize('like', Post::class);
+
+        $post = Post::findOrFail($id);
+
+        $post->likes()->toggle(Auth::user()->id);
+
+        // get the updated count
+        $post = Post::withCount('likes')
+            ->findOrFail($id);
+
+        return $post;
     }
 }

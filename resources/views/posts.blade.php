@@ -47,6 +47,22 @@
 
 @section('script')
     {{ Html::script('https://cdnjs.cloudflare.com/ajax/libs/salvattore/1.0.9/salvattore.min.js') }}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.btn-like').on('click', function(){
+                var target = $(this);
+                $.ajax({
+                    url: '/posts/'+$(this).data('post-id')+'/like',
+                    type: 'POST',
+                    data: {_token: "CSRF_TOKEN"}, //todo!!!
+                    dataType: 'JSON',
+                    success: function (data) {
+                        target.find('.likes-count').text(data.likes_count);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
 
 @section('content')
@@ -70,7 +86,7 @@
                 </div>
 
                 <div class="panel-footer">
-                    <button class="btn btn-default btn-sm"><span class="fa fa-thumbs-up"></span>{{' Like | 199'}}</button>
+                    <button class="btn btn-default btn-sm btn-like" data-post-id="{{$post->id}}"><span class="fa fa-thumbs-up"></span> Like <span class="badge likes-count">{{$post->likes_count}}</span></button>
                     <small class="pull-right" style="padding: 8px 0px 8px 0px"><a href="{{'/posts/'.$post->id}}">{{ $post->comments_count . ' Comment' . ($post->comments_count > 1? 's' : '')}}</a></small>
                 </div>
             </div>

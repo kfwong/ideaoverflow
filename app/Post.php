@@ -40,7 +40,7 @@ class Post extends Model
         return $this->belongsToMany('App\Tag');
     }
 
-    public function likedByUsers(){
-        return $this->belongsToMany('App\User');
+    public function likes(){
+        return $this->belongsToMany('App\User', 'post_user_likes');
     }
 }

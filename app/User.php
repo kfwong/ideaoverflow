@@ -41,7 +41,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Comment');
     }
 
-    public function likesPosts(){
-        return $this->belongsToMany('App\Post');
+    public function likes_posts(){
+        return $this->belongsToMany('App\Post', 'post_user_likes');
     }
 }
