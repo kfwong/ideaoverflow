@@ -158,15 +158,14 @@ class PostController extends Controller
     public function like($id){
         $this->authorize('like', Post::class);
 
-        $post = Post::withCount('comments')
-            ->withCount('likes')
-            ->with('user')
-            ->findOrFail($id);
+        $post = Post::findOrFail($id);
 
         $post->likes()->toggle(Auth::user()->id);
 
-        return view('welcome', [
-            'post' => $post
-        ]);
+        // get the updated count
+        $post = Post::withCount('likes')
+            ->findOrFail($id);
+
+        return $post;
     }
 }
