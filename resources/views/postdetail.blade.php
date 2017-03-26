@@ -9,7 +9,8 @@
 @endsection
 
 @section('script')
-
+    {{ Html::script('https://cdnjs.cloudflare.com/ajax/libs/salvattore/1.0.9/salvattore.min.js') }}
+    <script type="text/javascript" src="{{ asset('js/likebutton.js') }}"></script>
 @endsection
 
 @section('content')
@@ -32,8 +33,8 @@
         <p>{{ $post->body }}</p>
 
     </div>
-    <div>
-        <button class="btn btn-default"><span class="fa fa-thumbs-up"></span>{{' Like | 199'}}</button>
+    <div>                    
+        <button class="btn btn-default btn-sm btn-like" data-post-id="{{ $post->id }}"><span class="fa fa-thumbs-up"></span> Like <span class="badge likes-count">{{$post->likes_count}}</span></button>
         <div id="tags-container" class="hidden-xs">
             <a class="btn btn-success btn-xs" href="">Idea</a>
             <a class="btn btn-info btn-xs" href="">Web Development</a>
