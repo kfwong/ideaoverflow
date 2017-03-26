@@ -24,7 +24,11 @@
 <div class="posts">
     <div class="jumbotron">
         <h1>{{ $post->title }}</h1>
-        <h5><a class="user-name" href="{{ '/users/'.$post->user->id }}">{{ucfirst($post->user->name)}}</a> {{ '@'.$post->user->username }}</h5>
+        <h5>
+            <p>
+                by {{ucfirst($post->user->name)}} <a href="{{ '/users/'.$post->user->id }}">{{ '@'. $post->user->username }}</a>
+            </p>
+        </h5>
         <p>{{ $post->body }}</p>
 
     </div>
