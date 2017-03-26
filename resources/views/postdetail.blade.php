@@ -40,7 +40,7 @@
 </div> <!-- posts -->
 
 <!-- Comments Section -->
-<div>
+<div id="comments">
     <h3>{{'Comments ('.$post->comments_count.')'}}</h3>
     @if($post->comments_count <= 0)
         <p>No comments</p>
