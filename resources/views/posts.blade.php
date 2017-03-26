@@ -79,7 +79,10 @@
                             <span class="label label-info">Idea</span>
                         </small>
                     </h4>
-                    <a class="user-name" href="{{ '/users/'.$post->user['id'] }}">{{ $post->user['username'] }} @ {{$post->created_at->diffForHumans()}}</a>
+                    <span class="user-name">
+                        by <a href="{{ '/users/'.$post->user['id'] }}">{{ $post->user['username'] }}</a>
+                        <span class="pull-right"> {{$post->created_at->diffForHumans()}} </span>
+                    </span>
                 </div>
                 <div class="panel-body">
                     <p>{{ $post->body }}</p>
