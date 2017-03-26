@@ -62,7 +62,14 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::withCount('posts')
+            ->withCount('comments')
+            ->withCount('likes_posts')
+            ->findOrFail($id);
+
+        //$this->authorize('edit', $user);
+
+        return view('useredit', compact('user'));
     }
 
     /**
