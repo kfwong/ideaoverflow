@@ -34,7 +34,9 @@
 
     </div>
     <div>                    
-        <button class="btn btn-default btn-sm btn-like" data-post-id="{{ $post->id }}"><span class="fa fa-thumbs-up"></span> Like <span class="badge likes-count">{{$post->likes_count}}</span></button>
+        <button class="btn btn-default btn-sm btn-like" data-post-id="{{ $post->id }}" @cannot('like', App\Post::class) {{ 'disabled' }} @endcannot >
+            <span class="fa fa-thumbs-up"></span> Like <span class="badge likes-count">{{$post->likes_count}}</span>
+        </button>
         <div id="tags-container" class="hidden-xs">
             <a class="btn btn-success btn-xs" href="">Idea</a>
             <a class="btn btn-info btn-xs" href="">Web Development</a>
