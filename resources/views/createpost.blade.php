@@ -17,7 +17,7 @@
 <div class="createpostidea">
 <h1>Create a New {{$type}} !</h1>
 
-{!! Form::open() !!}
+{!! Form::open(['class' => 'form-horizontal', 'action' => ['PostController@store']]) !!}
 
 <div class="form-group">
     {!! Form::label($type.' title') !!}
