@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller
 {
@@ -45,7 +46,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::withCount('posts')
+            ->withCount('comments')
+            ->withCount('likes_posts')
+            ->findOrFail($id);
+
+        return view('userdetail',compact('user'));
     }
 
     /**
