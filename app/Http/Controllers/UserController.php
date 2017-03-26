@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -81,7 +82,35 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'unique:users,name|max:70',
+            'username' => 'unique:users,username|max:30',
+            'email' => 'unique:users,email',
+            'description' => 'max:140',
+        ]);
+
+        $user = User::withCount('posts')
+            ->withCount('comments')
+            ->withCount('likes_posts')
+            ->findOrFail($id);
+
+        //$this->authorize('update', $user);
+
+        /*$user->name = $request->name;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->description = $request->description;*/
+        
+        $user->fill($request->all());
+
+        $user->save();
+
+        Session::flash('message', 'User profile updated!');
+
+        return view('userdetail', [
+            'user' => $user
+        ]);
+
     }
 
     /**

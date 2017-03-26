@@ -24,6 +24,10 @@
 <div class="row">
 	<div class = "col-xs-3" >
 		@include('userprofile.usermaster')
+
+		<div>
+			<a class="btn btn-primary" href="/users/{{$user->id}}/edit">Edit Profile</a>
+		</div>
 	</div>
 
 	<div class = "col-xs-9" >
