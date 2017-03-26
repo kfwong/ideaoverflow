@@ -22,7 +22,4 @@ Route::resource('posts.comments', 'CommentController', ['except' => [
 ]]);
 
 Route::resource('posts.comments', 'PostCommentController');
-Route::resource('createpostidea', "CreatePostController");
-Route::resource("createpostproblem", "CreatePostController");
-Route::resource("createpostproject", "CreatePostController");
 Auth::routes();
