@@ -9,7 +9,8 @@
 @endsection
 
 @section('script')
-
+    {{ Html::script('https://cdnjs.cloudflare.com/ajax/libs/salvattore/1.0.9/salvattore.min.js') }}
+    <script type="text/javascript" src="{{ asset('js/likebutton.js') }}"></script>
 @endsection
 
 @section('content')
@@ -24,12 +25,18 @@
 <div class="posts">
     <div class="jumbotron">
         <h1>{{ $post->title }}</h1>
-        <h5><a class="user-name" href="{{ '/users/'.$post->user->id }}">{{ucfirst($post->user->name)}}</a> {{ '@'.$post->user->username }}</h5>
+        <h5>
+            <p>
+                by {{ucfirst($post->user->name)}} <a href="{{ '/users/'.$post->user->id }}">{{ '@'. $post->user->username }}</a>
+            </p>
+        </h5>
         <p>{{ $post->body }}</p>
 
     </div>
-    <div>
-        <button class="btn btn-default"><span class="fa fa-thumbs-up"></span>{{' Like | 199'}}</button>
+    <div>                    
+        <button class="btn btn-default btn-sm btn-like" data-post-id="{{ $post->id }}" @cannot('like', App\Post::class) {{ 'disabled' }} @endcannot >
+            <span class="fa fa-thumbs-up"></span> Like <span class="badge likes-count">{{$post->likes_count}}</span>
+        </button>
         <div id="tags-container" class="hidden-xs">
             <a class="btn btn-success btn-xs" href="">Idea</a>
             <a class="btn btn-info btn-xs" href="">Web Development</a>
@@ -40,7 +47,7 @@
 </div> <!-- posts -->
 
 <!-- Comments Section -->
-<div>
+<div id="comments">
     <h3>{{'Comments ('.$post->comments_count.')'}}</h3>
     @if($post->comments_count <= 0)
         <p>No comments</p>

@@ -47,22 +47,7 @@
 
 @section('script')
     {{ Html::script('https://cdnjs.cloudflare.com/ajax/libs/salvattore/1.0.9/salvattore.min.js') }}
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('.btn-like').on('click', function(){
-                var target = $(this);
-                $.ajax({
-                    url: '/posts/'+$(this).data('post-id')+'/like',
-                    type: 'POST',
-                    data: {_token: "CSRF_TOKEN"}, //todo!!!
-                    dataType: 'JSON',
-                    success: function (data) {
-                        target.find('.likes-count').text(data.likes_count);
-                    }
-                });
-            });
-        });
-    </script>
+    <script type="text/javascript" src="{{ asset('js/likebutton.js') }}"></script>
 @endsection
 
 @section('content')
@@ -76,18 +61,23 @@
                     <h4 class="modal-title">
                         <a class="post-title" href="{{'/posts/'.$post->id}}">{{ $post->title }}</a>
                         <small>
-                            <a href="" class="btn btn-success btn-xs">Idea</a>
+                            <span class="label label-info">Idea</span>
                         </small>
                     </h4>
-                    <a class="user-name" href="{{ '/users/'.$post->user['id'] }}">{{ $post->user['username'] }} @ {{$post->created_at->diffForHumans()}}</a>
+                    <span class="user-name">
+                        by <a href="{{ '/users/'.$post->user['id'] }}">{{ $post->user['username'] }}</a>
+                        <span class="pull-right"> {{$post->created_at->diffForHumans()}} </span>
+                    </span>
                 </div>
                 <div class="panel-body">
                     <p>{{ $post->body }}</p>
                 </div>
 
                 <div class="panel-footer">
-                    <button class="btn btn-default btn-sm btn-like" data-post-id="{{$post->id}}"><span class="fa fa-thumbs-up"></span> Like <span class="badge likes-count">{{$post->likes_count}}</span></button>
-                    <small class="pull-right" style="padding: 8px 0px 8px 0px"><a href="{{'/posts/'.$post->id}}">{{ $post->comments_count . ' Comment' . ($post->comments_count > 1? 's' : '')}}</a></small>
+                    <button class="btn btn-default btn-sm btn-like" data-post-id="{{$post->id}}" @cannot('like', App\Post::class) {{ 'disabled' }} @endcannot >
+                        <span class="fa fa-thumbs-up"></span> Like <span class="badge likes-count">{{$post->likes_count}}</span>
+                    </button>
+                    <small class="pull-right" style="padding: 8px 0px 8px 0px"><a href="{{'/posts/'. $post->id .'/#comments'}}">{{ $post->comments_count . ' Comments' }}</a></small>
                 </div>
             </div>
 
