@@ -47,22 +47,7 @@
 
 @section('script')
     {{ Html::script('https://cdnjs.cloudflare.com/ajax/libs/salvattore/1.0.9/salvattore.min.js') }}
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('.btn-like').on('click', function(){
-                var target = $(this);
-                $.ajax({
-                    url: '/posts/'+$(this).data('post-id')+'/like',
-                    type: 'POST',
-                    data: {_token: "CSRF_TOKEN"}, //todo!!!
-                    dataType: 'JSON',
-                    success: function (data) {
-                        target.find('.likes-count').text(data.likes_count);
-                    }
-                });
-            });
-        });
-    </script>
+    <script type="text/javascript" src="{{ asset('js/likebutton.js') }}"></script>
 @endsection
 
 @section('content')
