@@ -6,14 +6,20 @@
 
 </div>
 
-<div>
+@if($errors->any())
+    <div class="alert alert-danger">
+        @foreach($errors->all() as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    </div>
+@endif
 
-{!! Form::model($user,array('route'=>array('users.update',$user->id),'method'=>'PUT')) !!}
+<div>
+{!! Form::model($user,array('route'=>array('users.update',$user->id),'method'=>'PATCH')) !!}
 
 <div class="form-group">
 
 {!! Form::label('name','Name') !!}
-<br>
 {!! Form::text('name',null,array('class'=>'form-control')) !!}
 
 </div>
@@ -21,7 +27,6 @@
 <div class="form-group">
 	
 	{!! Form::label('username','Username') !!}
-	<br>
 	{!! Form::text('username',null,array('class'=>'form-control')) !!}
 
 </div>
@@ -29,7 +34,6 @@
 <div class="form-group">
 	
 	{!! Form::label('email','Email') !!}
-	<br>
 	{!! Form::text('email',null,array('class'=>'form-control')) !!}
 
 </div>
@@ -37,18 +41,16 @@
 <div class="form-group">
 	
 	{!! Form::label('description','Description') !!}
-	<br>
 	{!! Form::textarea('description',null,array('class'=>'form-control')) !!}
 	
 </div>
 
-<div class="form-group">
 
-	<br>
 	{!! Form::submit('Update Profile', 
 		array('class'=>'btn btn-primary')) !!}
 
-</div>
+	<a class="btn btn-primary" href="/users/{{$user->id}}">Cancel</a>
+
 
 {!! Form::close() !!}
 
