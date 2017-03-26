@@ -76,7 +76,7 @@
                     <h4 class="modal-title">
                         <a class="post-title" href="{{'/posts/'.$post->id}}">{{ $post->title }}</a>
                         <small>
-                            <a href="" class="btn btn-success btn-xs">Idea</a>
+                            <span class="label label-info">Idea</span>
                         </small>
                     </h4>
                     <a class="user-name" href="{{ '/users/'.$post->user['id'] }}">{{ $post->user['username'] }} @ {{$post->created_at->diffForHumans()}}</a>
