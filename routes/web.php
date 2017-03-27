@@ -14,10 +14,12 @@
 Route::get('/', 'PostController@index');
 
 Route::resource('posts', 'PostController');
+
 Route::post('/posts/{post}/like', 'PostController@like');
 
 Route::resource('posts.comments', 'CommentController', ['except' => [
     'index', 'show', 'create'
 ]]);
 
+Route::resource('posts.comments', 'PostCommentController');
 Auth::routes();

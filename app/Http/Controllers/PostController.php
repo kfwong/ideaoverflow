@@ -31,10 +31,10 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         $this->authorize('create', Post::class);
-
-        return view('welcome');
+        
+        return view ('createpost', ['type' => 'post']);
     }
 
     /**
