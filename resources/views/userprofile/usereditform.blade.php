@@ -1,17 +1,19 @@
-<div >
-	
-	<h3>edit {{$user->username}}'s profile</h3>
+<div>
 
-	<br>
+    <h3>edit {{$user->username}}'s profile</h3>
+
+    <br>
 
 </div>
 
 @if($errors->any())
+
+@foreach($errors->all() as $error)
     <div class="alert alert-danger">
-        @foreach($errors->all() as $error)
-            <p>{{ $error }}</p>
-        @endforeach
+        <p>{{ $error }}</p>
     </div>
+@endforeach
+
 @endif
 
 <div>
@@ -25,31 +27,23 @@
 </div>
 
 <div class="form-group">
-	
-	{!! Form::label('username','Username') !!}
-	{!! Form::text('username',null,array('class'=>'form-control')) !!}
+
+    {!! Form::label('email','Email') !!}
+    {!! Form::text('email',null,array('class'=>'form-control')) !!}
 
 </div>
 
 <div class="form-group">
-	
-	{!! Form::label('email','Email') !!}
-	{!! Form::text('email',null,array('class'=>'form-control')) !!}
+
+    {!! Form::label('description','Description') !!}
+    {!! Form::textarea('description',null,array('class'=>'form-control')) !!}
 
 </div>
 
-<div class="form-group">
-	
-	{!! Form::label('description','Description') !!}
-	{!! Form::textarea('description',null,array('class'=>'form-control')) !!}
-	
-</div>
+    {!! Form::submit('Update Profile', 
+        array('class'=>'btn btn-primary')) !!}
 
-
-	{!! Form::submit('Update Profile', 
-		array('class'=>'btn btn-primary')) !!}
-
-	<a class="btn btn-primary" href="/users/{{$user->id}}">Cancel</a>
+    <a class="btn btn-primary" href="/users/{{$user->id}}">Cancel</a>
 
 
 {!! Form::close() !!}

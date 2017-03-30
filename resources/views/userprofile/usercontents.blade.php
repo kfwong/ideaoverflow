@@ -1,6 +1,6 @@
 <div >
 	
-	<h3>{{$user->username}}'s posts</h3>
+	<h3 class="text-center">Posts</h3>
 
 	<br>
 
@@ -14,7 +14,9 @@
 		
 	<a href="/posts/{{$post->id}}"><h4>{{$post->title}}</h4></a>
 	
-	<p>{{$post->created_at->toFormattedDateString()}}
+    <p>Created: {{$post->created_at->toFormattedDateString()}}
+        <span class="pull-right">Last updated: {{ $post->updated_at->toFormattedDateString() }}</span>
+    </p>
 
 	<p>{{$post->body}}</p>
 	

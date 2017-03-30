@@ -83,9 +83,8 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'unique:users,name|max:70',
-            'username' => 'unique:users,username|max:30',
-            'email' => 'unique:users,email',
+            'name' => 'required|max:70',
+            'email' => "required|unique:users,email,$id,|email",
             'description' => 'max:140',
         ]);
 
@@ -96,11 +95,6 @@ class UserController extends Controller
 
         //$this->authorize('update', $user);
 
-        /*$user->name = $request->name;
-        $user->username = $request->username;
-        $user->email = $request->email;
-        $user->description = $request->description;*/
-        
         $user->fill($request->all());
 
         $user->save();
