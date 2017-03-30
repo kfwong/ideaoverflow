@@ -17,11 +17,11 @@
           <div class="dropdown">
             <button class="btn btn-success dropdown-toggle navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Write Post <span class="fa fa-pencil-square-o"></span></button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><a href="#">Post an idea</a></li>
+              <li><a href="/posts/create">Post an idea</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Post a problem</a></li>
+              <li><a href="/posts/create">Post a problem</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Post a project</a></li>
+              <li><a href="/posts/create">Post a project</a></li>
             </ul>
           </div>
         </li>
