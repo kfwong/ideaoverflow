@@ -68,7 +68,7 @@ class UserController extends Controller
             ->withCount('likes_posts')
             ->findOrFail($id);
 
-        //$this->authorize('edit', $user);
+        $this->authorize('update', $user);
 
         return view('useredit', compact('user'));
     }
@@ -93,7 +93,7 @@ class UserController extends Controller
             ->withCount('likes_posts')
             ->findOrFail($id);
 
-        //$this->authorize('update', $user);
+        $this->authorize('update', $user);
 
         $user->fill($request->all());
 
