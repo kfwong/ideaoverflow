@@ -1,4 +1,4 @@
-<div >
+<div>
 
     <h3>edit {{$user->username}}'s profile</h3>
 
@@ -7,11 +7,13 @@
 </div>
 
 @if($errors->any())
+
+@foreach($errors->all() as $error)
     <div class="alert alert-danger">
-        @foreach($errors->all() as $error)
-            <p>{{ $error }}</p>
-        @endforeach
+        <p>{{ $error }}</p>
     </div>
+@endforeach
+
 @endif
 
 <div>
