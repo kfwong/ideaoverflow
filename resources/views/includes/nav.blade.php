@@ -30,7 +30,7 @@
             {{ 'Hi, '. ucfirst(Auth::user()->name) }} <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="/user/{{ Auth::user()->id }}">View my profile</a></li>
+            <li><a href="/users/{{ Auth::user()->id }}">View my profile</a></li>
             <li class="divider" role="separator"></li>
             {{ Form::open(['url'=>'/logout']) }}
             <div class="text-center">

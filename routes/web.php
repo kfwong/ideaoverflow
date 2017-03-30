@@ -21,5 +21,8 @@ Route::resource('posts.comments', 'CommentController', ['except' => [
     'index', 'show', 'create'
 ]]);
 
-Route::resource('posts.comments', 'PostCommentController');
+Route::resource('users','UserController',['except'=>[
+	'index','create','store','destroy']]);
+	//temporarily forbid user 'create', 'store' and 'destroy' like posts
+
 Auth::routes();
