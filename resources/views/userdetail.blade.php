@@ -24,10 +24,11 @@
 <div class="row">
     <div class = "col-xs-3" >
         @include('userprofile.usermaster')
-
+        @can('update', $user)
         <div>
             <a class="btn btn-primary" href="/users/{{$user->id}}/edit">Edit Profile</a>
         </div>
+        @endcan
     </div>
 
     <div class = "col-xs-9" >
