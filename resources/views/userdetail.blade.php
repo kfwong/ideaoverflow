@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('page-title', $user->username." (".$user->name.")")
+@section('page-title', "User $user->username")
 
 @section('content-title','Ideaoverflow')
 
