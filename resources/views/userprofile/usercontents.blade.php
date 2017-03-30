@@ -14,7 +14,9 @@
 		
 	<a href="/posts/{{$post->id}}"><h4>{{$post->title}}</h4></a>
 	
-	<p>{{$post->created_at->toFormattedDateString()}}
+    <p>Created: {{$post->created_at->toFormattedDateString()}}
+        <span class="pull-right">Last updated: {{ $post->updated_at->toFormattedDateString() }}</span>
+    </p>
 
 	<p>{{$post->body}}</p>
 	
