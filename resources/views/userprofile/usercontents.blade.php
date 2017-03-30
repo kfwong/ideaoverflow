@@ -1,6 +1,6 @@
 <div >
 	
-	<h3>{{$user->username}}'s posts</h3>
+	<h3 class="text-center">Posts</h3>
 
 	<br>
 
