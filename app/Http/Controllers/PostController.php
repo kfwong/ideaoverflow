@@ -25,8 +25,8 @@ class PostController extends Controller
         ->with(['likes'=> function($query) {
             $query->where('user_id', '=', Auth::id());
         }])
-        ->get();
-        
+        ->paginate(20);
+
         return view('posts', [
             'posts' => $posts
             ]);
