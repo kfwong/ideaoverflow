@@ -5,7 +5,7 @@
 @section('content-title', 'Ideaoverflow')
 
 @section('stylesheet')
-{{ Html::style('css/posts.css') }}
+    {{ Html::style('css/posts.css') }}
 @endsection
 
 @section('script')
@@ -69,25 +69,25 @@
 
   <div class="form-group">
     {!! Form::label('Title') !!}
-    {!! Form::text('title', null, 
-    ['required', 
-    'class'=>'form-control', 
+    {!! Form::text('title', null,
+    ['required',
+    'class'=>'form-control',
     'placeholder'=>'Post Title']) !!}
   </div>
 
   <div class="form-group">
     {!! Form::label('Post Body') !!}
-    {!! Form::textarea('body', null, 
-    ['required', 
-    'class'=>'form-control', 
+    {!! Form::textarea('body', null,
+    ['required',
+    'class'=>'form-control',
     'placeholder'=>'Post Body']) !!}
   </div>
 
   <div class="form-group">
-    {!! Form::submit('Post it!', 
+    {!! Form::submit('Post it!',
     ['class'=>'btn btn-primary']) !!}
   </div>
   {!! Form::close() !!}
-</div> 
+</div>
 
 @endsection
