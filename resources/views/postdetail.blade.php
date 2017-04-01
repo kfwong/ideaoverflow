@@ -18,8 +18,9 @@
     $(document).ready(function($) {
         $('.btn-delete-comment').click(function(event) {
             $('.create-comment').hide();
-            event.currentTarget.hidden = true;
             comment_id = event.currentTarget.id.substring(13);
+            $('#comment-edit-' + comment_id).hide();
+            console.log($('#comment-' + comment_id + '>div.media-body>p').html());
             var form = $("<form class='media-body'></form>");
             form.append('<div class="form-group"><textarea class="form-control" rows="3"></textarea></div>');
             var div = $('<div></div>')
@@ -27,16 +28,15 @@
             div.append('<button class="btn btn-danger">Delete Comment</button>');
             div.append('<a id="cancel-comment-'+ comment_id +'" class="btn btn-default cancel">Cancel</a>');
             form.append(div);
-            $('#comment-' + comment_id + ' div.media-body').hide();
+            $('#comment-' + comment_id + '>div.media-body').hide();
             $('#comment-' + comment_id).append(form);
 
             $('.cancel').click(function(event) {
-            comment_id = event.currentTarget.id.substring(15);
-            $('#comment-' + comment_id + ' div.media-body').show();
-            $('form.media-body').hide();
-            $('#comment-edit-' + comment_id).show();
-            console.log(comment_id);
-        });
+                comment_id = event.currentTarget.id.substring(15);
+                $('#comment-' + comment_id + '>div.media-body').show();
+                $('form.media-body').hide();
+                $('#comment-edit-' + comment_id).show();
+            });
         });
 
 
