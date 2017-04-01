@@ -9,14 +9,26 @@
 @endsection
 
 @section('script')
-
+<script type="text/javascript">
+  if ($(window).width() < 768) {
+    $('.btn-group').addClass('btn-group-justified');
+ } 
+ $(window).resize(function() {
+  if ($(window).width() < 768) {
+     $('.btn-group').addClass('btn-group-justified');
+  }
+ else {
+    $('.btn-group').removeClass('btn-group-justified');
+ }
+});
+</script>
 @endsection
 
 @section('content')
 
 @if(count($errors) > 0) 
 <div class="alert alert-danger" role="alert">
-<strong>Oh snap!</strong> Change a few things up and try submitting again.
+  <strong>Oh snap!</strong> Change a few things up and try submitting again.
   <ul>
     @foreach($errors->all() as $error)
     <li>{{$error}}</li> 
@@ -38,10 +50,19 @@
 
   <div class="form-group">
 
-    <label class="radio-inline">{!! Form::radio('type', 'Idea', true) !!} Idea</label>
-    <label class="radio-inline">{!! Form::radio('type', 'Problem') !!} Problem</label>
-    <label class="radio-inline">{!! Form::radio('type', 'Project') !!} Project</label>
 
+    <div class="btn-group btn-group-sm" data-toggle="buttons">
+      <label class="btn btn-default active">
+        {!! Form::radio('type', 'Idea', true) !!} Idea
+      </label>
+      <label class="btn btn-default">
+        {!! Form::radio('type', 'Problem') !!} Problem
+      </label>
+      <label class="btn btn-default">
+        {!! Form::radio('type', 'Project') !!} Project
+      </label>
+    </div>
+    
 
 
   </div>
