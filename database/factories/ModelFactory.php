@@ -37,6 +37,7 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
 });
 
 
+
 $factory->define(App\Comment::class, function (Faker\Generator $faker) {
     $user_id = $faker->randomNumber(2);
     $post_id = $faker->randomNumber(2);

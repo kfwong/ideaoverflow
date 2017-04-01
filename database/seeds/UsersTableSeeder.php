@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
         $member->role = 'member';
         $member->save();
 
-        factory(App\User::class, 100)
+        factory(App\User::class, 50)
             ->create();
     }
 }
