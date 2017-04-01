@@ -64,3 +64,7 @@
 .form-group {
 	width: 100%;
 }
+
+.cancel {
+	float: right;
+}
