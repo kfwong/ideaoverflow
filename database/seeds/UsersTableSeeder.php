@@ -20,6 +20,7 @@ class UsersTableSeeder extends Seeder
         $admin->remember_token = str_random(10);
         $admin->description = 'admin';
         $admin->role = 'admin';
+		$admin->gender = 'admin';
         $admin->save();
 
         $member = new User();
@@ -30,6 +31,7 @@ class UsersTableSeeder extends Seeder
         $member->remember_token = str_random(10);
         $member->description = 'member';
         $member->role = 'member';
+		$member->gender = 'member';
         $member->save();
 
         factory(App\User::class, 50)

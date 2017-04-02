@@ -18,6 +18,8 @@
 	<p id="email">{{$user->email}}</p>
 	
 	<p id="description">{{$user->description}}</p>
+	
+	<p id="gender">{{$user->gender}}</p>
 
 </div>
 
