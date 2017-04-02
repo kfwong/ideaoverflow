@@ -27,6 +27,7 @@
             $('#comment-edit-' + comment_id).hide();
 
             $('.cancel').click(function(event) {
+                $('.create-comment').show();
                 comment_id = event.currentTarget.id.substring(15);
                 $('#comment-' + comment_id + '>.display-comment').show();
                 $('#comment-' + comment_id + '>.edit-comment').hide();
