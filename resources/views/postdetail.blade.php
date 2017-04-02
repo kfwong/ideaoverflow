@@ -11,6 +11,7 @@
 @section('script')
 {{ Html::script('https://cdnjs.cloudflare.com/ajax/libs/salvattore/1.0.9/salvattore.min.js') }}
 <script type="text/javascript" src="{{ asset('js/likebutton.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/viewLikers.js') }}"></script>
 <script type="text/javascript">
     $(function () {
         $('[data-toggle="tooltip"]').tooltip();
@@ -43,37 +44,6 @@
         else
             return false;
     }
-</script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#userExample').hide();
-        $('#exampleModal').on('show.bs.modal', function (event) {
-            post_id = $(event.relatedTarget).data('post-id');
-            $.ajax({
-                url: '/posts/'+post_id+'/likers',
-                type: 'GET',
-                dataType: 'JSON',
-            })
-            .done(function(users) {
-                console.log(users.length)
-                $('.loader').hide();
-                for (var i = 0; i < users.length; i++) {
-                    user = users[i];
-                    var userdiv = $('#userExample').clone();
-                    userdiv.show();
-                    userdiv.find('.like-name').html(user['name'] + ' <small>@' + user['username']+ '</small>');
-                    $('.modal-body').append(userdiv);
-                }
-            })
-            .fail(function() {
-                console.log("error");
-            })
-            .always(function(users) {
-                console.log("complete");
-            });
-            
-        });
-    });
 </script>
 @endsection
 
