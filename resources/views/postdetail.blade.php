@@ -61,7 +61,7 @@
                     user = users[i];
                     var userdiv = $('#userExample').clone();
                     userdiv.show();
-                    userdiv.find('.like-name').html(user['name']);
+                    userdiv.find('.like-name').html(user['name'] + ' <small>@' + user['username']+ '</small>');
                     $('.modal-body').append(userdiv);
                 }
             })
