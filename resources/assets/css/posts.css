@@ -64,3 +64,15 @@
 .form-group {
 	width: 100%;
 }
+
+.cancel {
+	float: right;
+}
+
+.delete-form {
+	display: inline;
+}
+
+#btn-edit-post {
+	color: #2c3e50;
+}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -34,7 +35,7 @@ class PostController extends Controller
     public function create(Request $request){
         $this->authorize('create', Post::class);
         
-        return view ('createpost', ['type' => 'post']);
+        return view ('createpost');
     }
 
     /**
@@ -47,10 +48,17 @@ class PostController extends Controller
 
         $this->authorize('store', Post::class);
 
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'title' => 'required|max:255',
             'body' => 'required',
+            'type' => 'required'
         ]);
+
+        if ($validator->fails()) {
+            return redirect('/posts/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
 
         $post = new Post();
 
@@ -62,7 +70,7 @@ class PostController extends Controller
 
         Session::flash('message', 'Post created!');
 
-        return view('welcome', [
+        return view('postdetail', [
             'post' => $post
         ]);
     }
@@ -93,14 +101,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::withCount('comments')
-            ->withCount('likes')
-            ->with('user')
-            ->findOrFail($id);
+        $post = Post::findOrFail($id);
 
         $this->authorize('edit', $post);
 
-        return view('welcome', [
+        return view('createpost', [
             'post' => $post
         ]);
     }
@@ -114,10 +119,17 @@ class PostController extends Controller
      */
     public function update(Request $request, $id){
 
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'title' => 'required|max:255',
             'body' => 'required',
+            'type' => 'required'
         ]);
+
+        if ($validator->fails()) {
+            return redirect('/posts/'.$id.'/edit')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
 
         $post = Post::withCount('comments')
             ->withCount('likes')
