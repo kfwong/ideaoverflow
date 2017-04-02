@@ -68,3 +68,7 @@
 .cancel {
 	float: right;
 }
+
+.delete-form {
+	display: inline;
+}

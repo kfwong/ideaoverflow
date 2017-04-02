@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Post;
 use Illuminate\Http\Request;
 use App\Comment;
@@ -22,9 +23,15 @@ class CommentController extends Controller
     {
         $this->authorize('store', Comment::class);
 
-        $this->validate($request, [
-            'body' => 'required',
+        $validator = Validator::make($request->all(), [
+            'body' => 'required'
         ]);
+
+        if ($validator->fails()) {
+            return redirect('/posts/'.$post->id)
+                        ->withErrors($validator)
+                        ->withInput();
+        }
 
         $comment = new Comment();
 
@@ -66,9 +73,15 @@ class CommentController extends Controller
     {
         $this->authorize('update', $comment);
 
-        $this->validate($request, [
-            'body' => 'required',
+        $validator = Validator::make($request->all(), [
+            'body' => 'required'
         ]);
+
+        if ($validator->fails()) {
+            return redirect('/posts/'.$post_id)
+                        ->withErrors($validator)
+                        ->withInput();
+        }
 
         $comment->fill($request->all());
 
@@ -77,7 +90,7 @@ class CommentController extends Controller
 
         $comment->save();
 
-        Session::flash('message', 'Comment' . $comment->id . 'updated!');
+        Session::flash('message', 'Comment is updated!');
 
 
         return Redirect::to('/posts/'. $post_id);
@@ -96,7 +109,7 @@ class CommentController extends Controller
 
         $comment->delete();
 
-        Session::flash('message', "Comment" .  $comment->id . "deleted.");
+        Session::flash('message', "Your comment has been deleted.");
 
         return Redirect::to('/posts/'. $post->id);
     }
