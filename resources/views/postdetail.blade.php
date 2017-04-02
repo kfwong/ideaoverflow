@@ -68,6 +68,9 @@
 
 <div class="posts">
     <div class="jumbotron">
+        @can('update', $post)
+        <a href="/posts/{{$post->id}}/edit" class="close" id="btn-edit-post"><span aria-hidden="true"><i class="fa fa-pencil"></i></span></a>
+        @endif
         <h1>{{ $post->title }}</h1>
         <h5>
             <p>
