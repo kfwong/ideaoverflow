@@ -104,7 +104,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             @can('destroy', $comment)
-            <button id="{{'comment-edit-'.$comment->id }}" type="button" class="close btn-delete-comment" data-dismiss="alert" aria-label="Close" data-toggle="tooltip" data-placement="bottom" title="Edit or Delete Comment"><span aria-hidden="true"><i class="fa fa-pencil"></i></span></button>
+            <button id="{{'comment-edit-'.$comment->id }}" type="button" class="close btn-delete-comment" data-toggle="tooltip" data-placement="bottom" title="Edit or Delete Comment"><span aria-hidden="true"><i class="fa fa-pencil"></i></span></button>
             @endif
             <div class="media" id="comment-{{$comment->id}}">
                 <div class="media-left">
