@@ -11,6 +11,7 @@
 @section('script')
 {{ Html::script('https://cdnjs.cloudflare.com/ajax/libs/salvattore/1.0.9/salvattore.min.js') }}
 <script type="text/javascript" src="{{ asset('js/likebutton.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/viewLikers.js') }}"></script>
 <script type="text/javascript">
     $(function () {
         $('[data-toggle="tooltip"]').tooltip();
@@ -43,7 +44,6 @@
         else
             return false;
     }
-
 </script>
 @endsection
 
@@ -83,8 +83,13 @@
     </div>
     <div>                    
         <button class="btn btn-default btn-sm btn-like" data-post-id="{{ $post->id }}" @cannot('like', App\Post::class) {{ 'disabled' }} @endcannot >
-            <span class="fa fa-thumbs-up"></span> Like <span class="badge likes-count">{{$post->likes_count}}</span>
-        </button>
+            <span class="fa fa-thumbs-up"></span> Like </span>
+        </button> 
+        
+        @if($post->likes_count > 0)
+        <a href=""  data-toggle="modal" data-target="#exampleModal" data-post-id="{{$post->id}}">{{$post->likes_count}} user{{$post->likes_count>1? 's like':' likes'}} this post</a>
+        @endif
+        
         <div id="tags-container" class="hidden-xs">
             <a class="btn btn-success btn-xs" href="">Idea</a>
             <a class="btn btn-info btn-xs" href="">Web Development</a>
@@ -104,7 +109,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             @can('destroy', $comment)
-            <button id="{{'comment-edit-'.$comment->id }}" type="button" class="close btn-delete-comment" data-dismiss="alert" aria-label="Close" data-toggle="tooltip" data-placement="bottom" title="Edit or Delete Comment"><span aria-hidden="true"><i class="fa fa-pencil"></i></span></button>
+            <button id="{{'comment-edit-'.$comment->id }}" type="button" class="close btn-delete-comment" data-toggle="tooltip" data-placement="bottom" title="Edit or Delete Comment"><span aria-hidden="true"><i class="fa fa-pencil"></i></span></button>
             @endif
             <div class="media" id="comment-{{$comment->id}}">
                 <div class="media-left">
@@ -166,5 +171,32 @@
 @endif
 <!-- End Post Comments -->
 
-
+<!-- Modal for likers/followers-->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="exampleModal">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridSystemModalLabel">Users who liked this post</h4>
+    </div>
+    <div class="modal-body">
+    <div class="loader"></div>
+        <div id="userExample">
+            <div class="media-left media-middle">
+                <a href="#">
+                    <img class="media-object img-circle" src="https://placehold.it/32x32" alt="profile-pic">
+                </a>
+            </div>
+            <div class="media-body media-middle">
+                <h5 class="like-name">Userinformation</h5>
+            </div>
+            <hr>
+        </div> 
+    </div>
+</div>
+</div>
+</div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- End Modal -->
 @endsection

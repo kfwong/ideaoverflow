@@ -76,3 +76,18 @@
 #btn-edit-post {
 	color: #2c3e50;
 }
+
+.loader {
+    border: 0.5em solid #f3f3f3;
+    border-top: 0.5em solid #2c3e50;
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
