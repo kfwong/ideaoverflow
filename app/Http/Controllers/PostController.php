@@ -7,6 +7,7 @@ use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Response;
 
 class PostController extends Controller
 {
@@ -179,5 +180,12 @@ class PostController extends Controller
             ->findOrFail($id);
 
         return $post;
+    }
+
+    public function viewLikers($id) {
+        // $this->authorize('viewLikers', Post::class);
+        $post = Post::findOrFail($id);
+        $users = $post->likes()->get();
+        return response()->json($users);
     }
 }
