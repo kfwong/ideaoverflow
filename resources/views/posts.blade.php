@@ -215,6 +215,5 @@
             @endif
         </main>
     </div>
-    >>>>>>> Added styling for post.
 
 @endsection
