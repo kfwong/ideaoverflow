@@ -74,7 +74,7 @@
 
                 <div class="panel-footer">
                     <button class="btn btn-{{(count($post->likes) > 0)? 'primary':'default'}} btn-sm btn-like" data-post-id="{{$post->id}}" @cannot('like', App\Post::class) {{ 'disabled' }} @endcannot >
-                        <span class="fa fa-thumbs-up"></span> {{(count($post->likes) > 0)? 'Liked ':'Like ' }}<span class="badge likes-count">{{$post->likes_count}}</span> 
+                        <span class="fa fa-thumbs-up"></span> <span class="like-state">{{(count($post->likes) > 0)? 'Liked ':'Like ' }}</span><span class="badge likes-count">{{$post->likes_count}}</span> 
                     </button>
                     <small class="pull-right" style="padding: 8px 0px 8px 0px"><a href="{{'/posts/'. $post->id .'/#comments'}}">{{ $post->comments_count . ' Comments' }}</a></small>
                 </div>

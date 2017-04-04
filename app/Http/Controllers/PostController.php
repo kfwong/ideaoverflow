@@ -183,6 +183,9 @@ class PostController extends Controller
 
         // get the updated count
         $post = Post::withCount('likes')
+        ->with(['likes'=> function($query) {
+            $query->where('user_id', '=', Auth::id());
+        }])
         ->findOrFail($id);
 
         return $post;
