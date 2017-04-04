@@ -17,14 +17,20 @@ $(document).ready(function() {
                 var userdiv = $('#userExample').clone();
                 userdiv.addClass('liker-user');
                 userdiv.show();
-                userdiv.find('.like-name').html(user['name'] + ' <small>@' + user['username']+ '</small>');
-                
-                var userimg = $('<img />', { 
-                  src: '/img/avatars/avatar_' + user['id'] + '.jpg',
+                var userprof = $('<a>', {
+                    text: '@' + user['username'],
+                    href: '/users/' + user['id']
+                })
+                userdiv.find('.like-name').html(user['name'] + ' <small>'+ $('<div>').append(userprof).html() +'</small>');
+                userimg = $('<img />', { 
+                  src: '/img/doge-profile.jpg',
                   alt: 'profile',
                   width: '32px',
-                  height: '32px',
-                  onError: 'this.src = "/img/doge-profile.jpg"'
+                  height: '32px'
+                });
+                var userimghref = '/img/avatars/avatar_' + user['id'] + '.jpg';
+                $.get(userimghref).done(function() {
+                    userimg.attr('src', userimghref);
                 });
                 userdiv.find('.media-left').html(userimg);
                 $('.modal-body').append(userdiv);
