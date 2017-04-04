@@ -1,6 +1,8 @@
 $(document).ready(function() {
         $('#userExample').hide();
         $('#exampleModal').on('show.bs.modal', function (event) {
+            $('.liker-user').remove();
+            $('.loader').show();
             post_id = $(event.relatedTarget).data('post-id');
             $.ajax({
                 url: '/posts/'+post_id+'/likers',
@@ -13,6 +15,7 @@ $(document).ready(function() {
                 for (var i = 0; i < users.length; i++) {
                     user = users[i];
                     var userdiv = $('#userExample').clone();
+                    userdiv.addClass('liker-user');
                     userdiv.show();
                     userdiv.find('.like-name').html(user['name'] + ' <small>@' + user['username']+ '</small>');
                     $('.modal-body').append(userdiv);
@@ -23,7 +26,6 @@ $(document).ready(function() {
             })
             .always(function(users) {
                 console.log("complete");
-                $('#exampleModal').off('show.bs.modal');
             });
             
         });
