@@ -17,7 +17,7 @@
 @endif
 
 <div>
-{!! Form::model($user,array('route'=>array('users.update',$user->id),'method'=>'PATCH')) !!}
+{!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'PATCH', 'files' => true]) !!}
 
 <div class="form-group">
 
@@ -38,6 +38,12 @@
     {!! Form::label('description','Description') !!}
     {!! Form::textarea('description',null,array('class'=>'form-control')) !!}
 
+</div>
+
+<div class="form-group">
+    {!! Form::label('avatar', 'Avatar (jpeg/png)') !!}
+    {!! Form::file('avatar') !!}
+    {!! Form::reset('Clear', array('class' => 'pull-right')) !!}
 </div>
 
     {!! Form::submit('Update Profile', 
