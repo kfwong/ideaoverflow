@@ -35,6 +35,21 @@
                 $('#comment-edit-' + comment_id).show();
             });
         });
+
+        $(document).on('likes-count-changed', function(event, likesCount) {
+            $('.likes-count').text(likesCount);
+            if(likesCount == 0) {
+                $('.show-likers').hide();
+            } else {
+                $('.show-likers').show();
+                if(likesCount > 1) {
+                    $('.likers-state').text('s like');
+                } else {
+                    $('.likers-state').text(' likes');
+                }
+            }
+            
+        })
     });
 
     function confirmDelete() {
@@ -79,16 +94,13 @@
             </p>
         </h5>
         <p>{{ $post->body }}</p>
-
     </div>
     <div>                    
-        <button class="btn btn-default btn-sm btn-like" data-post-id="{{ $post->id }}" @cannot('like', App\Post::class) {{ 'disabled' }} @endcannot >
-            <span class="fa fa-thumbs-up"></span> Like </span>
+        <button class="btn btn-{{(count($post->likes) > 0)? 'primary':'default' }} btn-sm btn-like" data-post-id="{{ $post->id }}" @cannot('like', App\Post::class) {{ 'disabled' }} @endcannot >
+            <span class="fa fa-thumbs-up"></span><span class="like-state">{{(count($post->likes) > 0)? 'Liked ':'Like ' }}</span></span>
         </button> 
         
-        @if($post->likes_count > 0)
-        <a href=""  data-toggle="modal" data-target="#exampleModal" data-post-id="{{$post->id}}">{{$post->likes_count}} user{{$post->likes_count>1? 's like':' likes'}} this post</a>
-        @endif
+        <a href="" class="show-likers" data-toggle="modal" data-target="#exampleModal" data-post-id="{{$post->id}}" {{($post->likes_count == 0)? 'hidden':''}}><span class="likes-count">{{$post->likes_count}}</span> user<span class="likers-state">{{$post->likes_count>1? 's like':' likes'}}</span> this post</a>
         
         <div id="tags-container" class="hidden-xs">
             <a class="btn btn-success btn-xs" href="">Idea</a>

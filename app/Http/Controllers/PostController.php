@@ -19,13 +19,16 @@ class PostController extends Controller
     public function index() {
 
         $posts = Post::withCount('comments')
-            ->withCount('likes')
-            ->with('user')
-            ->get();
-
+        ->withCount('likes')
+        ->with('user')
+        ->with(['likes'=> function($query) {
+            $query->where('user_id', '=', Auth::id());
+        }])
+        ->get();
+        
         return view('posts', [
             'posts' => $posts
-        ]);
+            ]);
     }
 
     /**
@@ -53,12 +56,12 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'body' => 'required',
             'type' => 'required'
-        ]);
+            ]);
 
         if ($validator->fails()) {
             return redirect('/posts/create')
-                        ->withErrors($validator)
-                        ->withInput();
+            ->withErrors($validator)
+            ->withInput();
         }
 
         $post = new Post();
@@ -73,7 +76,7 @@ class PostController extends Controller
 
         return view('postdetail', [
             'post' => $post
-        ]);
+            ]);
     }
 
     /**
@@ -85,15 +88,18 @@ class PostController extends Controller
     public function show($id){
 
         $post = Post::withCount('comments')
-            ->withCount('likes')
-            ->with('user', 'comments')
-            ->findOrFail($id);
+        ->withCount('likes')
+        ->with('user', 'comments')
+        ->with(['likes'=> function($query) {
+            $query->where('user_id', '=', Auth::id());
+        }])
+        ->findOrFail($id);
 
         return view('postdetail', [
             'post' => $post
-        ]);
+            ]);
     }
-		
+
     /**
      * Show the form for editing the specified post.
      *
@@ -108,7 +114,7 @@ class PostController extends Controller
 
         return view('createpost', [
             'post' => $post
-        ]);
+            ]);
     }
 
     /**
@@ -124,18 +130,18 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'body' => 'required',
             'type' => 'required'
-        ]);
+            ]);
 
         if ($validator->fails()) {
             return redirect('/posts/'.$id.'/edit')
-                        ->withErrors($validator)
-                        ->withInput();
+            ->withErrors($validator)
+            ->withInput();
         }
 
         $post = Post::withCount('comments')
-            ->withCount('likes')
-            ->with('user')
-            ->findOrFail($id);
+        ->withCount('likes')
+        ->with('user')
+        ->findOrFail($id);
 
         $this->authorize('update', $post);
 
@@ -147,7 +153,7 @@ class PostController extends Controller
 
         return view('postdetail', [
             'post' => $post
-        ]);
+            ]);
     }
 
     /**
@@ -177,7 +183,10 @@ class PostController extends Controller
 
         // get the updated count
         $post = Post::withCount('likes')
-            ->findOrFail($id);
+        ->with(['likes'=> function($query) {
+            $query->where('user_id', '=', Auth::id());
+        }])
+        ->findOrFail($id);
 
         return $post;
     }
@@ -185,7 +194,7 @@ class PostController extends Controller
     public function viewLikers($id) {
         // $this->authorize('viewLikers', Post::class);
         $post = Post::findOrFail($id);
-        $users = $post->likes()->get();
+        $users = $post->likes;
         return response()->json($users);
     }
 }
