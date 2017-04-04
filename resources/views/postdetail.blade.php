@@ -198,11 +198,7 @@
     <div class="modal-body">
     <div class="loader"></div>
         <div id="userExample">
-            <div class="media-left media-middle">
-                <a href="#">
-                    <img class="media-object img-circle" src="https://placehold.it/32x32" alt="profile-pic">
-                </a>
-            </div>
+            <div class="media-left media-middle"></div>
             <div class="media-body media-middle">
                 <h5 class="like-name">Userinformation</h5>
             </div>
