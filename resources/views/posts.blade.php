@@ -136,12 +136,13 @@
                 </div>
                 <div class="col-md-8">
                     <h3 style="margin-top: 50px;font-family:'Verdana, sans-serif'">Motivated by our
-                    dearth of inspiration during its conceptualization, we created IdeaOverflow as a platform for
-                    connecting people by ideas. As its name suggests, here you can find all sorts of cool thoughts –
-                    from the next big thing to simply interesting whimsies. Yet, IdeasOverflow is more than ideas: your
-                    brilliant plans attract like-minded people with various skills to join your great voyage.
-                    Additionally, you can document the progress towards your accomplishment here, and win cheers and
-                    supports from the community. So, join us now and start making things happen!</h3>
+                        dearth of inspiration during its conceptualization, we created IdeaOverflow as a platform for
+                        connecting people by ideas. As its name suggests, here you can find all sorts of cool thoughts –
+                        from the next big thing to simply interesting whimsies. Yet, IdeasOverflow is more than ideas:
+                        your
+                        brilliant plans attract like-minded people with various skills to join your great voyage.
+                        Additionally, you can document the progress towards your accomplishment here, and win cheers and
+                        supports from the community. So, join us now and start making things happen!</h3>
                 </div>
             </div>
         </div>
@@ -161,19 +162,20 @@
                                         <span class="label label-info">Idea</span>
                                     </small>
                                 </h4>
-                    <span class="user-name">
-                        by <a href="{{ '/users/'.$post->user['id'] }}">{{ $post->user['username'] }}</a>
-                        <span class="pull-right"> {{$post->created_at->diffForHumans()}} </span>
-                    </span>
+                                <span class="user-name">
+                                    by <a href="{{ '/users/'.$post->user['id'] }}">{{ $post->user['username'] }}</a>
+                                    <span class="pull-right"> {{$post->created_at->diffForHumans()}} </span>
+                                </span>
                             </div>
                             <div class="panel-body">
                                 <p>{{ $post->body }}</p>
                             </div>
 
                             <div class="panel-footer">
-                                <button class="btn btn-default btn-sm btn-like"
+                                <button class="btn btn-{{(count($post->likes) > 0)? 'primary':'default'}} btn-sm btn-like"
                                         data-post-id="{{$post->id}}" @cannot('like', App\Post::class) {{ 'disabled' }} @endcannot >
-                                    <span class="fa fa-thumbs-up"></span> Like <span
+                                    <span class="fa fa-thumbs-up"></span> <span
+                                            class="like-state">{{(count($post->likes) > 0)? 'Liked ':'Like ' }}</span><span
                                             class="badge likes-count">{{$post->likes_count}}</span>
                                 </button>
                                 <small class="pull-right" style="padding: 8px 0px 8px 0px"><a
@@ -191,27 +193,6 @@
                         </div>
                     </div>
                 </div>
-            @endif
-
-            <div class="panel-footer">
-                <button class="btn btn-{{(count($post->likes) > 0)? 'primary':'default'}} btn-sm btn-like"
-                        data-post-id="{{$post->id}}" @cannot('like', App\Post::class) {{ 'disabled' }} @endcannot >
-                    <span class="fa fa-thumbs-up"></span> <span
-                            class="like-state">{{(count($post->likes) > 0)? 'Liked ':'Like ' }}</span><span
-                            class="badge likes-count">{{$post->likes_count}}</span>
-                </button>
-                <small class="pull-right" style="padding: 8px 0px 8px 0px"><a
-                            href="{{'/posts/'. $post->id .'/#comments'}}">{{ $post->comments_count . ' Comments' }}</a>
-                </small>
-            </div>
-            @endforeach
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="pagination">
-                        <a id="next" href="{{$posts->nextPageUrl()}}">More...</a>
-                    </div>
-                </div>
-            </div>
             @endif
         </main>
     </div>
