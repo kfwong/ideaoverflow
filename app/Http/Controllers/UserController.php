@@ -86,6 +86,7 @@ class UserController extends Controller
             'name' => 'required|max:70',
             'email' => "required|unique:users,email,$id,|email",
             'description' => 'max:140',
+            'avatar' => 'mimes:jpeg,png',
         ]);
 
         $user = User::withCount('posts')
@@ -97,6 +98,14 @@ class UserController extends Controller
 
         $user->fill($request->all());
 
+        if ($request->hasFile('avatar')) {
+            if (!$request->file('avatar')->isValid()) {
+                return redirect("/users/$id/edit")->withErrors(['An error occurred while uploading the image.']);
+            }
+
+            $path = $request->avatar->storeAs('/img/avatars', "avatar_$id.jpg", 'public');
+        }
+        
         $user->save();
 
         Session::flash('message', 'User profile updated!');
