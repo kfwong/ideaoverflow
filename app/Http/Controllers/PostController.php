@@ -92,7 +92,7 @@ class PostController extends Controller
 
         $post = Post::withCount('comments')
         ->withCount('likes')
-        ->with('user', 'comments')
+        ->with('user', 'comments.user')
         ->with(['likes'=> function($query) {
             $query->where('user_id', '=', Auth::id());
         }])
