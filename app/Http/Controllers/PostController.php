@@ -6,6 +6,7 @@ use App\Post;
 use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Response;
 
@@ -16,16 +17,16 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-
+    public function index()
+    {
         $posts = Post::withCount('comments')
         ->withCount('likes')
         ->with('user')
         ->with(['likes'=> function($query) {
             $query->where('user_id', '=', Auth::id());
         }])
-        ->get();
-        
+        ->paginate(20);
+
         return view('posts', [
             'posts' => $posts
             ]);
@@ -36,10 +37,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request){
+    public function create(Request $request)
+    {
         $this->authorize('create', Post::class);
-        
-        return view ('createpost');
+
+        return view('createpost', ['type' => 'post']);
     }
 
     /**
@@ -48,7 +50,8 @@ class PostController extends Controller
      * @param  Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $this->authorize('store', Post::class);
 
@@ -74,9 +77,8 @@ class PostController extends Controller
 
         Session::flash('message', 'Post created!');
 
-        return view('postdetail', [
-            'post' => $post
-            ]);
+        return Redirect::to('/posts/' . $post->id);
+
     }
 
     /**
@@ -85,11 +87,12 @@ class PostController extends Controller
      * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function show($id){
+    public function show($id)
+    {
 
         $post = Post::withCount('comments')
         ->withCount('likes')
-        ->with('user', 'comments')
+        ->with('user', 'comments.user')
         ->with(['likes'=> function($query) {
             $query->where('user_id', '=', Auth::id());
         }])
@@ -120,11 +123,12 @@ class PostController extends Controller
     /**
      * Update the specified post in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
 
         $validator = Validator::make($request->all(), [
             'title' => 'required|max:255',
@@ -162,7 +166,8 @@ class PostController extends Controller
      * @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id){
+    public function destroy($id)
+    {
         //$this->authorize('delete', Post::class);
 
         $post = Post::findOrFail($id);
@@ -174,7 +179,8 @@ class PostController extends Controller
         return "Post $post->id deleted!";
     }
 
-    public function like($id){
+    public function like($id)
+    {
         $this->authorize('like', Post::class);
 
         $post = Post::findOrFail($id);

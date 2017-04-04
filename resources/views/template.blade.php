@@ -22,7 +22,7 @@
     <meta property="og:image"
           content="http://ghk.h-cdn.co/assets/16/09/980x490/landscape-1457107485-gettyimages-512366437.jpg"/>
 </head>
-<body class="container full-height">
+<body class="container-fluid full-height">
 
 <div id="fb-root"></div>
 <div class="row">
@@ -31,14 +31,10 @@
     </div>
 </div>
 
-<div id="content" class="row">
 
-    <main class="col-xs-12 col-md-offset-1 col-md-10">
 
-        @yield('content')
+@yield('content')
 
-    </main>
-</div>
 
 <div class="row">
     <div class="col-xs-12 col-md-offset-1 col-md-10">
