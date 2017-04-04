@@ -21,15 +21,10 @@ class PostController extends Controller
         $posts = Post::withCount('comments')
         ->withCount('likes')
         ->with('user')
+        ->with(['likes'=> function($query) {
+            $query->where('user_id', '=', Auth::id());
+        }])
         ->get();
-
-        if(Auth::check()) {
-            $user = Auth::user();
-            $likedposts = $user->likes_posts;
-            foreach ($posts as $post) {
-                $post->liked = $likedposts->contains($post);
-            }
-        }
         
         return view('posts', [
             'posts' => $posts
@@ -95,13 +90,10 @@ class PostController extends Controller
         $post = Post::withCount('comments')
         ->withCount('likes')
         ->with('user', 'comments')
+        ->with(['likes'=> function($query) {
+            $query->where('user_id', '=', Auth::id());
+        }])
         ->findOrFail($id);
-
-        if(Auth::check()) {
-            $user = Auth::user();
-            $likedposts = $user->likes_posts;
-            $post->liked = $likedposts->contains($post);
-        }
 
         return view('postdetail', [
             'post' => $post
@@ -199,7 +191,7 @@ class PostController extends Controller
     public function viewLikers($id) {
         // $this->authorize('viewLikers', Post::class);
         $post = Post::findOrFail($id);
-        $users = $post->likes()->get();
+        $users = $post->likes;
         return response()->json($users);
     }
 }

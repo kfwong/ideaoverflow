@@ -79,11 +79,10 @@
             </p>
         </h5>
         <p>{{ $post->body }}</p>
-
     </div>
     <div>                    
-        <button class="btn btn-{{(isset($post->liked) && $post->liked)? 'primary':'default' }} btn-sm btn-like" data-post-id="{{ $post->id }}" @cannot('like', App\Post::class) {{ 'disabled' }} @endcannot >
-            <span class="fa fa-thumbs-up"></span> {{(isset($post->liked) && $post->liked)? 'Liked ':'Like ' }} </span>
+        <button class="btn btn-{{(count($post->likes) > 0)? 'primary':'default' }} btn-sm btn-like" data-post-id="{{ $post->id }}" @cannot('like', App\Post::class) {{ 'disabled' }} @endcannot >
+            <span class="fa fa-thumbs-up"></span> {{(count($post->likes) > 0)? 'Liked ':'Like ' }} </span>
         </button> 
         
         @if($post->likes_count > 0)
