@@ -43,6 +43,7 @@
 <div class="form-group">
     {!! Form::label('avatar', 'Avatar (jpeg/png)') !!}
     {!! Form::file('avatar') !!}
+    {!! Form::reset('Clear', array('class' => 'pull-right')) !!}
 </div>
 
     {!! Form::submit('Update Profile', 
