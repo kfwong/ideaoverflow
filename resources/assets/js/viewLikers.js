@@ -23,6 +23,7 @@ $(document).ready(function() {
             })
             .always(function(users) {
                 console.log("complete");
+                $('#exampleModal').off('show.bs.modal');
             });
             
         });
