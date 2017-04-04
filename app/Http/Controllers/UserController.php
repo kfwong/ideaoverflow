@@ -99,10 +99,6 @@ class UserController extends Controller
         $user->fill($request->all());
 
         if ($request->hasFile('avatar')) {
-            if (!$request->file('avatar')->isValid()) {
-                return redirect("/users/$id/edit")->withErrors(['An error occurred while uploading the image.']);
-            }
-
             $path = $request->avatar->storeAs('/img/avatars', "avatar_$id.jpg", 'public');
         }
         
