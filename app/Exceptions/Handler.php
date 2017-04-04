@@ -46,7 +46,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if ($exception instanceof PostTooLargeException) {
-            return response('File too large!', 422);
+            abort(422);
         }
 
         return parent::render($request, $exception);
