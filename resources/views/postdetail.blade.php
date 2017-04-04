@@ -113,9 +113,13 @@
             @endif
             <div class="media" id="comment-{{$comment->id}}">
                 <div class="media-left">
-                    <a href="#">
-                        <img class="media-object img-circle" src="https://placehold.it/64x64" alt="profile-pic">
-                    </a>
+                    @if (Storage::disk('public')->exists("img/avatars/avatar_" . $comment->user->id . ".jpg")) 
+                        {{  Html::image(Storage::url("img/avatars/avatar_" . $comment->user->id . ".jpg") ,'profile' ,array('width'=>64, 'height'=>64))  }}
+
+                    @else 
+                        {{  Html::image('img/doge-profile.jpg','profile',array('width'=>64, 'height'=>64))  }}
+
+                    @endif 
                 </div>
                 <div class="media-body display-comment">
                     <h4 class="media-heading">
