@@ -159,7 +159,7 @@
                                 </div>
                                 <div class="col-md-6 hidden-xs" style="text-align: left;">
                                     <h1>Brainstorming for Hackathon?</h1>
-                                    <p>Bacon ipsum dolor amet filet mignon andouille chicken prosciutto biltong ham hamburger pork loin cow tongue tri-tip venison brisket.</p>
+                                    <p>Ideaoverflow is the creativity hub that saves you from the grind of finding inspiration.</p>
                                 </div>
                             </div>
                         </figure>
@@ -171,7 +171,7 @@
                                 </div>
                                 <div class="col-md-6 hidden-xs" style="text-align: left;">
                                     <h1>Marketing Research</h1>
-                                    <p>Bacon ipsum dolor amet filet mignon andouille chicken prosciutto biltong ham hamburger pork loin cow tongue tri-tip venison brisket.</p>
+                                    <p>Illustrate your brilliant concept to potential customers and get free, heartfelt feedback.</p>
                                 </div>
                             </div>
                         </figure>
@@ -183,7 +183,7 @@
                                 </div>
                                 <div class="col-md-6 hidden-xs" style="text-align: left;">
                                     <h1>Portfolio Showcase</h1>
-                                    <p>Bacon ipsum dolor amet filet mignon andouille chicken prosciutto biltong ham hamburger pork loin cow tongue tri-tip venison brisket.</p>
+                                    <p>Keep your past feats alive and let them tell your stories.</p>
                                 </div>
                             </div>
                         </figure>
@@ -195,7 +195,7 @@
                                 </div>
                                 <div class="col-md-6 hidden-xs" style="text-align: left;">
                                     <h1>Startup</h1>
-                                    <p>Bacon ipsum dolor amet filet mignon andouille chicken prosciutto biltong ham hamburger pork loin cow tongue tri-tip venison brisket.</p>
+                                    <p>Connect, communicate and collaborate with professionals out of your realm.</p>
                                 </div>
                             </div>
                         </figure>
@@ -206,8 +206,8 @@
                                     <img src="/img/success-stories.png"/>
                                 </div>
                                 <div class="col-md-5" style="text-align: left;">
-                                    <h1>Share Your Success Stories</h1>
-                                    <p>Bacon ipsum dolor amet filet mignon andouille chicken prosciutto biltong ham hamburger pork loin cow tongue tri-tip venison brisket.</p>
+                                    <h1>Share Your Success</h1>
+                                    <p>Nurture your ideas, record their growth, earn more community support.</p>
                                 </div>
                             </div>
                         </figure>
