@@ -55,13 +55,13 @@
 
 
                     <div class="btn-group btn-group-sm" data-toggle="buttons">
-                        <label class="btn btn-default active">
+                        <label class="btn btn-default {{($post->tags->first())['name'] == 'Idea'? 'active': '' }}">
                             {!! Form::radio('type', 'Idea', true) !!} Idea
                         </label>
-                        <label class="btn btn-default">
+                        <label class="btn btn-default {{($post->tags->first())['name'] == 'Problem'? 'active': '' }}">
                             {!! Form::radio('type', 'Problem') !!} Problem
                         </label>
-                        <label class="btn btn-default">
+                        <label class="btn btn-default {{($post->tags->first())['name'] == 'Project'? 'active': '' }}">
                             {!! Form::radio('type', 'Project') !!} Project
                         </label>
                     </div>

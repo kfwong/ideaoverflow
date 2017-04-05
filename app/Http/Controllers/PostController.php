@@ -162,14 +162,12 @@ class PostController extends Controller
 
         $newtag = Tag::where('name', $request->type)->firstOrFail();
         $oldtag = $post->tags->where('type','Post');
-        $tag->posts()->toggle($post->id);
-        $tag->save();
+        $post->tags()->detach($oldtag);
+        $post->tags()->attach($newtag);
         
         Session::flash('message', 'Post updated!');
 
-        return view('postdetail', [
-            'post' => $post
-        ]);
+        return Redirect::to('/posts/' . $post->id);
     }
 
     /**
