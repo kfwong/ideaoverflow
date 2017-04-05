@@ -132,11 +132,11 @@
 
 
     <div id="parallax-section-1" data-parallax="scroll" data-position="top" data-natural-width="600"
-         data-natural-height="550" data-bleed="100" style="height:550px;">
+         data-natural-height="400" data-bleed="100" style="height:400px;">
         <div class="parallax-slider">
             <div class="row">
-                <div class="col-md-4">
-                    <img class="img-fluid" src="/img/creative-idea.png"/>
+                <div class="col-sm-2 col-md-4">
+                    <img class="img-fluid" src="/img/creative-idea.png" style="max-width: 100%;margin-top:100px;"/>
                 </div>
                 <div class="col-md-8">
 
