@@ -161,7 +161,7 @@
                                 </h4>
                                 <span class="user-name">
                                     by <a href="{{ '/users/'.$post->user['id'] }}">{{ $post->user['username'] }}</a>
-                                    <span class="pull-right"> {{$post->created_at->diffForHumans()}} </span>
+                                    <span class="pull-right"> {{$post->updated_at->diffForHumans()}} </span>
                                 </span>
                             </div>
                             <div class="panel-body">

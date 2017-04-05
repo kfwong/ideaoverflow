@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Http\Response;
+use Validator;
 
 class PostController extends Controller
 {
@@ -20,16 +19,17 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::withCount('comments')
-        ->withCount('likes')
-        ->with('user')
-        ->with(['likes'=> function($query) {
-            $query->where('user_id', '=', Auth::id());
-        }])
-        ->paginate(20);
+            ->withCount('likes')
+            ->with('user')
+            ->with(['likes' => function ($query) {
+                $query->where('user_id', '=', Auth::id());
+            }])
+            ->orderBy('created_at', 'desc')
+            ->paginate(20);
 
         return view('posts', [
             'posts' => $posts
-            ]);
+        ]);
     }
 
     /**
@@ -59,12 +59,12 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'body' => 'required',
             'type' => 'required'
-            ]);
+        ]);
 
         if ($validator->fails()) {
             return redirect('/posts/create')
-            ->withErrors($validator)
-            ->withInput();
+                ->withErrors($validator)
+                ->withInput();
         }
 
         $post = new Post();
@@ -91,16 +91,16 @@ class PostController extends Controller
     {
 
         $post = Post::withCount('comments')
-        ->withCount('likes')
-        ->with('user', 'comments.user')
-        ->with(['likes'=> function($query) {
-            $query->where('user_id', '=', Auth::id());
-        }])
-        ->findOrFail($id);
+            ->withCount('likes')
+            ->with('user', 'comments.user')
+            ->with(['likes' => function ($query) {
+                $query->where('user_id', '=', Auth::id());
+            }])
+            ->findOrFail($id);
 
         return view('postdetail', [
             'post' => $post
-            ]);
+        ]);
     }
 
     /**
@@ -117,7 +117,7 @@ class PostController extends Controller
 
         return view('createpost', [
             'post' => $post
-            ]);
+        ]);
     }
 
     /**
@@ -134,18 +134,18 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'body' => 'required',
             'type' => 'required'
-            ]);
+        ]);
 
         if ($validator->fails()) {
-            return redirect('/posts/'.$id.'/edit')
-            ->withErrors($validator)
-            ->withInput();
+            return redirect('/posts/' . $id . '/edit')
+                ->withErrors($validator)
+                ->withInput();
         }
 
         $post = Post::withCount('comments')
-        ->withCount('likes')
-        ->with('user')
-        ->findOrFail($id);
+            ->withCount('likes')
+            ->with('user')
+            ->findOrFail($id);
 
         $this->authorize('update', $post);
 
@@ -157,7 +157,7 @@ class PostController extends Controller
 
         return view('postdetail', [
             'post' => $post
-            ]);
+        ]);
     }
 
     /**
@@ -189,15 +189,16 @@ class PostController extends Controller
 
         // get the updated count
         $post = Post::withCount('likes')
-        ->with(['likes'=> function($query) {
-            $query->where('user_id', '=', Auth::id());
-        }])
-        ->findOrFail($id);
+            ->with(['likes' => function ($query) {
+                $query->where('user_id', '=', Auth::id());
+            }])
+            ->findOrFail($id);
 
         return $post;
     }
 
-    public function viewLikers($id) {
+    public function viewLikers($id)
+    {
         // $this->authorize('viewLikers', Post::class);
         $post = Post::findOrFail($id);
         $users = $post->likes;

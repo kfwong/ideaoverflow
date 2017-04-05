@@ -151,7 +151,7 @@
                                             </p>
 
                                             <p>
-                                                <small>{{$comment->created_at->diffForHumans()}}</small>
+                                                <small>{{$comment->updated_at->diffForHumans()}}</small>
                                             </p>
                                         </h4>
                                         <p>{{$comment->body}}</p>
