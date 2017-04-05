@@ -118,7 +118,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::with(['tags' => function($query) {
+            $query->where('type','Post');
+        }])
+                ->findOrFail($id);
 
         $this->authorize('edit', $post);
 
