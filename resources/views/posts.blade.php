@@ -5,7 +5,9 @@
 @section('content-title', 'Ideaoverflow')
 
 @section('stylesheet')
+    {{ Html::style('css/gallery.prefixed.css') }}
     {{ Html::style('css/posts.css') }}
+    {{ Html::style('https://fonts.googleapis.com/css?family=Jockey+One') }}
     <style>
         /* Base styles */
         .column {
@@ -98,6 +100,18 @@
         #parallax-section-1 {
             background: transparent;
         }
+
+        figure h1{
+            font-family: 'Jockey One', sans-serif !important;
+            color:#ED7347;
+            margin-top: 100px;
+            font-size: 4em;
+        }
+
+        figure p{
+            color:white;
+            font-size: 2em;
+        }
     </style>
 @endsection
 
@@ -135,18 +149,78 @@
          data-natural-height="400" data-bleed="100" style="height:400px;">
         <div class="parallax-slider">
             <div class="row">
-                <div class="col-sm-2 col-md-4">
-                    <img class="img-fluid" src="/img/creative-idea.png" style="max-width: 100%;margin-top:100px;"/>
-                </div>
-                <div class="col-md-8">
+                <div class="col-md-12">
+                    <!--<img class="img-fluid" src="/img/creative-idea.png" style="max-width: 100%;margin-top:100px;"/>-->
+                    <div class="gallery items-5 autoplay" style="margin-top:100px">
+                        <figure class="item">
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-3">
+                                    <img src="/img/brainstorming.png"/>
+                                </div>
+                                <div class="col-md-6 hidden-xs" style="text-align: left;">
+                                    <h1>Brainstorming for Hackathon?</h1>
+                                    <p>Bacon ipsum dolor amet filet mignon andouille chicken prosciutto biltong ham hamburger pork loin cow tongue tri-tip venison brisket.</p>
+                                </div>
+                            </div>
+                        </figure>
 
+                        <figure class="item">
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-3">
+                                    <img src="/img/market-research.png"/>
+                                </div>
+                                <div class="col-md-6 hidden-xs" style="text-align: left;">
+                                    <h1>Marketing Research</h1>
+                                    <p>Bacon ipsum dolor amet filet mignon andouille chicken prosciutto biltong ham hamburger pork loin cow tongue tri-tip venison brisket.</p>
+                                </div>
+                            </div>
+                        </figure>
+
+                        <figure class="item">
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-3">
+                                    <img src="/img/portfolio.png"/>
+                                </div>
+                                <div class="col-md-6 hidden-xs" style="text-align: left;">
+                                    <h1>Portfolio Showcase</h1>
+                                    <p>Bacon ipsum dolor amet filet mignon andouille chicken prosciutto biltong ham hamburger pork loin cow tongue tri-tip venison brisket.</p>
+                                </div>
+                            </div>
+                        </figure>
+
+                        <figure class="item">
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-3">
+                                    <img src="/img/startup.png"/>
+                                </div>
+                                <div class="col-md-6 hidden-xs" style="text-align: left;">
+                                    <h1>Startup</h1>
+                                    <p>Bacon ipsum dolor amet filet mignon andouille chicken prosciutto biltong ham hamburger pork loin cow tongue tri-tip venison brisket.</p>
+                                </div>
+                            </div>
+                        </figure>
+
+                        <figure class="item">
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-4">
+                                    <img src="/img/success-stories.png"/>
+                                </div>
+                                <div class="col-md-5" style="text-align: left;">
+                                    <h1>Share Your Success Stories</h1>
+                                    <p>Bacon ipsum dolor amet filet mignon andouille chicken prosciutto biltong ham hamburger pork loin cow tongue tri-tip venison brisket.</p>
+                                </div>
+                            </div>
+                        </figure>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
 
     <div id="content" class="row">
         <main class="col-xs-12 col-md-offset-1 col-md-10">
+
             @if(isset($posts))
                 <div id="posts" data-columns>
                     @foreach($posts as $post)
