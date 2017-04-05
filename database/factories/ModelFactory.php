@@ -23,6 +23,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'role' => 'member',
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+		'gender' => $faker->randomElement(['male', 'female', 'not specified'])
     ];
 });
 
@@ -35,6 +36,7 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
         'type' => $faker->randomElement(['problem', 'idea', 'project'])
     ];
 });
+
 
 
 $factory->define(App\Comment::class, function (Faker\Generator $faker) {

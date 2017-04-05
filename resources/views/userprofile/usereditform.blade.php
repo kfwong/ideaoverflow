@@ -39,6 +39,17 @@
     {!! Form::textarea('description',null,array('class'=>'form-control')) !!}
 
 </div>
+	
+
+<div class="form-group">
+
+    {!! Form::label('gender','Gender') !!}
+    {!! Form::select('gender',[
+            'Not specified' => 'Not specified',
+            'Male' => 'Male',
+            'Female' => 'Female',
+            ], null, ['class' => 'form-control'])!!}
+</div>
 
 <div class="form-group">
     {!! Form::label('avatar', 'Avatar (jpeg/png)') !!}
