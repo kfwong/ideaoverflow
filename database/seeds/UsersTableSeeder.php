@@ -16,25 +16,25 @@ class UsersTableSeeder extends Seeder
         $admin->name = 'admin';
         $admin->username= 'admin';
         $admin->email = 'admin@example.com';
-        $admin->password = bcrypt('admin');
+        $admin->password = bcrypt('4dmin@ideaoverflow');
         $admin->remember_token = str_random(10);
         $admin->description = 'admin';
         $admin->role = 'admin';
-		$admin->gender = 'admin';
+		$admin->gender = 'male';
         $admin->save();
 
         $member = new User();
         $member->name = 'member';
         $member->username= 'member';
         $member->email = 'member@example.com';
-        $member->password = bcrypt('member');
+        $member->password = bcrypt('m3mber@ideaoverflow');
         $member->remember_token = str_random(10);
         $member->description = 'member';
         $member->role = 'member';
-		$member->gender = 'member';
+		$member->gender = 'female';
         $member->save();
 
-        factory(App\User::class, 50)
+        factory(App\User::class, 6)
             ->create();
     }
 }
