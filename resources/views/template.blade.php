@@ -38,7 +38,6 @@
 
 <div class="row">
     <div class="col-xs-12 col-md-offset-1 col-md-10">
-        <hr/>
         @include('includes.footer')
     </div>
 </div>
