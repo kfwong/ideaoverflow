@@ -21,13 +21,16 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::withCount('comments')
-            ->withCount('likes')
-            ->with('user')
-            ->with(['likes' => function ($query) {
-                $query->where('user_id', '=', Auth::id());
-            }])
-            ->orderBy('created_at', 'desc')
-            ->paginate(20);
+        ->withCount('likes')
+        ->with('user')
+        ->with(['likes'=> function($query) {
+            $query->where('user_id', '=', Auth::id());
+        }])
+        ->with(['tags'=> function($query) {
+            $query->where('type','Post');
+        }])
+        ->orderBy('created_at', 'desc')
+        ->paginate(20);
 
         return view('posts', [
             'posts' => $posts
@@ -77,9 +80,7 @@ class PostController extends Controller
         $post->save();
 
         $tag = Tag::where('name', $request->type)->firstOrFail();
-        $tag->posts()->toggle($post->id);
-        $tag->save();
-        
+        $tag->posts()->attach($post->id);
 
         Session::flash('message', 'Post created!');
 
@@ -98,7 +99,7 @@ class PostController extends Controller
 
         $post = Post::withCount('comments')
             ->withCount('likes')
-            ->with('user', 'comments.user')
+            ->with('user', 'comments.user','tags')
             ->with(['likes' => function ($query) {
                 $query->where('user_id', '=', Auth::id());
             }])
@@ -159,7 +160,8 @@ class PostController extends Controller
 
         $post->save();
 
-        $tag = Tag::where('name', $request->type)->firstOrFail();
+        $newtag = Tag::where('name', $request->type)->firstOrFail();
+        $oldtag = $post->tags->where('type','Post');
         $tag->posts()->toggle($post->id);
         $tag->save();
         

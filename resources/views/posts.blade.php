@@ -156,7 +156,7 @@
                                 <h4 class="modal-title">
                                     <a class="post-title" href="{{'/posts/'.$post->id}}">{{ $post->title }}</a>
                                     <small>
-                                        <span class="label label-info">Idea</span>
+                                        <span class="label {{'tag-'.lcfirst(($post->tags->first())['name'])}}">{{($post->tags->first())['name']}}</span>
                                     </small>
                                 </h4>
                                 <span class="user-name">

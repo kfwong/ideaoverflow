@@ -109,7 +109,7 @@
                                 class="likers-state">{{$post->likes_count>1? 's like':' likes'}}</span> this post</a>
 
                     <div id="tags-container" class="hidden-xs">
-                        <a class="btn btn-success btn-xs" href="">Idea</a>
+                        <span class="label {{'tag-'.lcfirst(($post->tags->where('type','Post')->first())['name'])}}">{{($post->tags->where('type','Post')->first())['name']}}</span>
                         <a class="btn btn-info btn-xs" href="">Web Development</a>
                         <a class="btn btn-warning btn-xs" href="">Environment Conservation</a>
                     </div>
