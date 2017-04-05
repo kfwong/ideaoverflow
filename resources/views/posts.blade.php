@@ -27,6 +27,10 @@
             padding: 10px;
         }
 
+        body{
+            background-color: #096180 !important;
+        }
+
         .panel {
             animation-name: fly;
             animation-duration: 1s;
@@ -83,14 +87,14 @@
                 content: '3 .column.size-1of3';
             }
         }
-
+/*
         .parallax-mirror {
             margin-top: 50px;
             left: 0 !important;
             width: 100% !important;
             background-color: #096180;
         }
-
+*/
         #parallax-section-1 {
             background: transparent;
         }
@@ -132,17 +136,10 @@
         <div class="parallax-slider">
             <div class="row">
                 <div class="col-md-4">
-                    <img src="/img/creative-idea.png"/>
+                    <img class="img-fluid" src="/img/creative-idea.png"/>
                 </div>
                 <div class="col-md-8">
-                    <h3 style="margin-top: 50px;font-family:'Verdana, sans-serif'">Motivated by our
-                        dearth of inspiration during its conceptualization, we created IdeaOverflow as a platform for
-                        connecting people by ideas. As its name suggests, here you can find all sorts of cool thoughts –
-                        from the next big thing to simply interesting whimsies. Yet, IdeasOverflow is more than ideas:
-                        your
-                        brilliant plans attract like-minded people with various skills to join your great voyage.
-                        Additionally, you can document the progress towards your accomplishment here, and win cheers and
-                        supports from the community. So, join us now and start making things happen!</h3>
+
                 </div>
             </div>
         </div>

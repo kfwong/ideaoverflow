@@ -1,5 +1,5 @@
 <!-- footer -->
-<footer class="center">
+<footer class="center" style="background-color: transparent;color: white;">
     Copyright @ 2017 Ideaoverflow
 
 <br>
