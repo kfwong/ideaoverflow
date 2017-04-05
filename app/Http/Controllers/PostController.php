@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Tag;
+use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -72,8 +74,12 @@ class PostController extends Controller
         $post->user_id = Auth::user()->id;
 
         $post->fill($request->all());
-
         $post->save();
+
+        $tag = Tag::where('name', $request->type)->firstOrFail();
+        $tag->posts()->toggle($post->id);
+        $tag->save();
+        
 
         Session::flash('message', 'Post created!');
 
@@ -153,6 +159,10 @@ class PostController extends Controller
 
         $post->save();
 
+        $tag = Tag::where('name', $request->type)->firstOrFail();
+        $tag->posts()->toggle($post->id);
+        $tag->save();
+        
         Session::flash('message', 'Post updated!');
 
         return view('postdetail', [
