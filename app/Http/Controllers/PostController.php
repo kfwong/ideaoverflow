@@ -166,7 +166,7 @@ class PostController extends Controller
         $oldtag = $post->tags->where('type','Post');
         $post->tags()->detach($oldtag);
         $post->tags()->attach($newtag);
-        
+
         Session::flash('message', 'Post updated!');
 
         return Redirect::to('/posts/' . $post->id);
@@ -215,5 +215,10 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $users = $post->likes;
         return response()->json($users);
+    }
+
+    public function search(Request $request){
+        return Post::search($request->q)
+            ->get();
     }
 }
