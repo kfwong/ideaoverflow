@@ -28,7 +28,7 @@ $(document).ready(function() {
                   width: '32px',
                   height: '32px'
                 });
-                var userimghref = '/img/avatars/avatar_' + user['id'] + '.jpg';
+                var userimghref = '/storage/img/avatars/avatar_' + user['id'] + '.jpg';
                 $.get(userimghref).done(function() {
                     userimg.attr('src', userimghref);
                 });

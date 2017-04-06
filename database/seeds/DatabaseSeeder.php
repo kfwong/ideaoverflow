@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PostsTableSeeder::class);
         $this->call(CommentsTableSeeder::class);
 		$this->call(TagsTableSeeder::class);
+        $this->call(PostTagsTableSeeder::class);
         DB::statement('SET FOREIGN_KEY_CHECKS = 1'); // reenable foreign key constraints
     }
 }

@@ -91,3 +91,15 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+.tag-idea {
+	background-color: #3498db;
+}
+
+.tag-problem {
+	background-color: #f39c12;
+}
+
+.tag-project {
+	background-color: #18bc9c;	
+}

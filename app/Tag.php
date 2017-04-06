@@ -12,11 +12,11 @@ class Tag extends Model
      * @var array
      */
     protected $fillable = [
-        'name'
+        'name',
 		'type'
     ];
 
     public function posts(){
-        return $this->belongsToMany('App\Post');
+        return $this->belongsToMany('App\Post', 'post_tags');
     }
 }

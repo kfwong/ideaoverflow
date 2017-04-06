@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Tag;
+use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
-use Validator;
 
 class PostController extends Controller
 {
@@ -19,13 +20,16 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::withCount('comments')
-            ->withCount('likes')
-            ->with('user')
-            ->with(['likes' => function ($query) {
-                $query->where('user_id', '=', Auth::id());
-            }])
-            ->orderBy('created_at', 'desc')
-            ->paginate(20);
+        ->withCount('likes')
+        ->with('user')
+        ->with(['likes'=> function($query) {
+            $query->where('user_id', '=', Auth::id());
+        }])
+        ->with(['tags'=> function($query) {
+            $query->where('type','Post');
+        }])
+        ->orderBy('created_at', 'desc')
+        ->paginate(20);
 
         return view('posts', [
             'posts' => $posts
@@ -72,8 +76,10 @@ class PostController extends Controller
         $post->user_id = Auth::user()->id;
 
         $post->fill($request->all());
-
         $post->save();
+
+        $tag = Tag::where('name', $request->type)->firstOrFail();
+        $tag->posts()->attach($post->id);
 
         Session::flash('message', 'Post created!');
 
@@ -92,7 +98,7 @@ class PostController extends Controller
 
         $post = Post::withCount('comments')
             ->withCount('likes')
-            ->with('user', 'comments.user')
+            ->with('user', 'comments.user','tags')
             ->with(['likes' => function ($query) {
                 $query->where('user_id', '=', Auth::id());
             }])
@@ -111,7 +117,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::with(['tags' => function($query) {
+            $query->where('type','Post');
+        }])
+                ->findOrFail($id);
 
         $this->authorize('edit', $post);
 
@@ -153,11 +162,14 @@ class PostController extends Controller
 
         $post->save();
 
+        $newtag = Tag::where('name', $request->type)->firstOrFail();
+        $oldtag = $post->tags->where('type','Post');
+        $post->tags()->detach($oldtag);
+        $post->tags()->attach($newtag);
+        
         Session::flash('message', 'Post updated!');
 
-        return view('postdetail', [
-            'post' => $post
-        ]);
+        return Redirect::to('/posts/' . $post->id);
     }
 
     /**
