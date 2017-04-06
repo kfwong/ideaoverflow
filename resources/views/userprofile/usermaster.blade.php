@@ -15,11 +15,14 @@
 
 	<a href="/users/{{$user->id}}" id="username"><p>{{"@".$user->username}}</p></a>
 
-	<p id="email">{{$user->email}}</p>
+    @if ($user->gender !== 'Not specified')
+	    <p id="gender">{{$user->gender}}</p>
+    @endif
+    
+    <p id="email">{{$user->email}}</p>
 	
 	<p id="description">{{$user->description}}</p>
 	
-	<p id="gender">{{$user->gender}}</p>
 
 </div>
 
