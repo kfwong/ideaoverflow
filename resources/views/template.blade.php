@@ -32,6 +32,8 @@
     <meta property="og:description" content="ideaoverflow, a premium platform for idea and group forming"/>
     <meta property="og:image"
           content="http://ghk.h-cdn.co/assets/16/09/980x490/landscape-1457107485-gettyimages-512366437.jpg"/>
+		  
+	<link rel= "icon" type="image/png" href = "img/logo.png"/>
 </head>
 <body class="container-fluid full-height">
 
