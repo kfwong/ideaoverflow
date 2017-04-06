@@ -1,6 +1,6 @@
 <div>
 
-    <h3>edit {{$user->username}}'s profile</h3>
+    <h3>Edit {{$user->username}}'s profile</h3>
 
     <br>
 
@@ -54,7 +54,7 @@
 <div class="form-group">
     {!! Form::label('avatar', 'Avatar (jpeg/png)') !!}
     {!! Form::file('avatar') !!}
-    {!! Form::reset('Clear', array('class' => 'pull-right')) !!}
+    {!! Form::reset('Reset form', array('class' => 'pull-right')) !!}
 </div>
 
     {!! Form::submit('Update Profile', 
