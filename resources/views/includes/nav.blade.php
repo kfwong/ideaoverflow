@@ -48,9 +48,6 @@
         <li><a class="btn btn-primary" href="/register">Sign Up</a></li>
         @endif
       </ul>
-      <form class="navbar-form navbar-right">
-        <input type="text" class="form-control" placeholder="Search for posts">
-      </form>
     </div>
 
   </div><!--/.container-fluid -->

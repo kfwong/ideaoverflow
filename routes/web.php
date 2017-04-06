@@ -13,8 +13,8 @@
 
 Route::get('/', 'PostController@index');
 
+Route::get('/posts/search', 'PostController@search');
 Route::resource('posts', 'PostController');
-
 Route::post('/posts/{post}/like', 'PostController@like');
 Route::get('/posts/{post}/likers', 'PostController@viewLikers');
 

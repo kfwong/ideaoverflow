@@ -7,6 +7,7 @@
 @section('stylesheet')
     {{ Html::style('css/gallery.prefixed.css') }}
     {{ Html::style('css/posts.css') }}
+    {{ Html::style('css/search.css') }}
     {{ Html::style('https://fonts.googleapis.com/css?family=Jockey+One') }}
     <style>
         /* Base styles */
@@ -29,7 +30,7 @@
             padding: 10px;
         }
 
-        body{
+        body {
             background-color: #096180 !important;
         }
 
@@ -89,27 +90,28 @@
                 content: '3 .column.size-1of3';
             }
         }
-/*
-        .parallax-mirror {
-            margin-top: 50px;
-            left: 0 !important;
-            width: 100% !important;
-            background-color: #096180;
-        }
-*/
+
+        /*
+                .parallax-mirror {
+                    margin-top: 50px;
+                    left: 0 !important;
+                    width: 100% !important;
+                    background-color: #096180;
+                }
+        */
         #parallax-section-1 {
             background: transparent;
         }
 
-        figure h1{
+        figure h1 {
             font-family: 'Jockey One', sans-serif !important;
-            color:#ED7347;
+            color: #ED7347;
             margin-top: 100px;
             font-size: 4em;
         }
 
-        figure p{
-            color:white;
+        figure p {
+            color: white;
             font-size: 2em;
         }
     </style>
@@ -117,9 +119,11 @@
 
 @section('script')
     {{ Html::script('https://cdnjs.cloudflare.com/ajax/libs/salvattore/1.0.9/salvattore.min.js') }}
+    {{ Html::script('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js') }}
     {{ Html::script('js/parallax.min.js') }}
     {{ Html::script('js/likebutton.js') }}
     {{ Html::script('js/jquery-ias.min.js') }}
+    {{ Html::script('js/search.js') }}
     <script>
         $(document).ready(function () {
             var ias = $.ias({
@@ -138,6 +142,7 @@
             });
 
             $('#parallax-section-1').parallax();
+
         });
     </script>
 @endsection
@@ -159,7 +164,9 @@
                                 </div>
                                 <div class="col-md-6 hidden-xs" style="text-align: left;">
                                     <h1>Brainstorming for Hackathon?</h1>
-                                    <p>Ideaoverflow is the creativity hub that saves you from the grind of finding inspiration.</p>
+
+                                    <p>Ideaoverflow is the creativity hub that saves you from the grind of finding
+                                        inspiration.</p>
                                 </div>
                             </div>
                         </figure>
@@ -171,7 +178,9 @@
                                 </div>
                                 <div class="col-md-6 hidden-xs" style="text-align: left;">
                                     <h1>Marketing Research</h1>
-                                    <p>Illustrate your brilliant concept to potential customers and get free, heartfelt feedback.</p>
+
+                                    <p>Illustrate your brilliant concept to potential customers and get free, heartfelt
+                                        feedback.</p>
                                 </div>
                             </div>
                         </figure>
@@ -183,6 +192,7 @@
                                 </div>
                                 <div class="col-md-6 hidden-xs" style="text-align: left;">
                                     <h1>Portfolio Showcase</h1>
+
                                     <p>Keep your past feats alive and let them tell your stories.</p>
                                 </div>
                             </div>
@@ -195,6 +205,7 @@
                                 </div>
                                 <div class="col-md-6 hidden-xs" style="text-align: left;">
                                     <h1>Startup</h1>
+
                                     <p>Connect, communicate and collaborate with professionals out of your realm.</p>
                                 </div>
                             </div>
@@ -207,6 +218,7 @@
                                 </div>
                                 <div class="col-md-5" style="text-align: left;">
                                     <h1>Share Your Success</h1>
+
                                     <p>Nurture your ideas, record their growth, earn more community support.</p>
                                 </div>
                             </div>
@@ -220,7 +232,13 @@
 
     <div id="content" class="row">
         <main class="col-xs-12 col-md-offset-1 col-md-10">
+            <div class="search-field">
+                <input id="searchbox" type="search" name="q" placeholder="Search..." autocomplete="off">
+                <button type="button" id="search">Find!</button>
+                <ul class="results">
 
+                </ul>
+            </div>
             @if(isset($posts))
                 <div id="posts" data-columns>
                     @foreach($posts as $post)
