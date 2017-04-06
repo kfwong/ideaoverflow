@@ -233,7 +233,7 @@
     <div id="content" class="row">
         <main class="col-xs-12 col-md-offset-1 col-md-10">
             <div class="search-field">
-                <input id="searchbox" type="search" name="q" placeholder="Search..." autocomplete="off">
+                <input id="searchbox" type="search" name="q" placeholder="Find your inspiration here! Start by typing any keywords or project type!" autocomplete="off">
                 <button type="button" id="search">Find!</button>
                 <ul class="results">
 
