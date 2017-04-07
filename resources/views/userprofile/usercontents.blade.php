@@ -1,29 +1,35 @@
 <div >
 	
-	<h3 class="text-center">Posts</h3>
+	<h3 class="text-center">{{ $user->name . "'s " }} posts</h3>
 
 	<br>
 
 </div>
 
-<div >
+<div class="container-fluid">
 
 	@foreach($user->posts as $post)
-	
+    <div class="row">    
 	<article>
-		
-	<a href="/posts/{{$post->id}}"><h4>{{$post->title}}</h4></a>
-	
-    <p>Created: {{$post->created_at->toFormattedDateString()}}
-        <span class="pull-right">Last updated: {{ $post->updated_at->toFormattedDateString() }}</span>
-    </p>
 
-	<p>{{$post->body}}</p>
-	
-	<hr/>
+    <div class="col-xs-12">    
+        <a href="/posts/{{$post->id}}"><h4>{{$post->title}}</h4></a>
+    </div>
 
-	</article>
+    <div class="col-md-6">    
+        <p><b>Created: {{$post->created_at->toFormattedDateString()}} </b></p>
+    </div>
+    <div class="col-md-6">
+        <p><b>Last updated: {{ $post->updated_at->toFormattedDateString() }} </b></p>
+    </div>
 
+    <div class="col-xs-12">
+        <p>{{$post->body}} </p>
+        <hr>
+    </div>
+
+    </article>
+    </div>
 	@endforeach
 
 </div>
