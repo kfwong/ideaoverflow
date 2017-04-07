@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -51,6 +52,7 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'username' => 'required|max:255|unique:users',
             'email' => 'required|email|max:255|unique:users',
+            'gender' => ['required', Rule::in(['male', 'female', 'unspecified'])],
             'password' => 'required|min:6|confirmed',
         ]);
     }
