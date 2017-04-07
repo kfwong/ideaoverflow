@@ -21,7 +21,7 @@ $(document).ready(function() {
                     text: '@' + user['username'],
                     href: '/users/' + user['id']
                 })
-                userdiv.find('.like-name').html(user['name'] + ' <small>'+ $('<div>').append(userprof).html() +'</small>');
+                userdiv.find('.like-name').html($('<div/>').text(user['name']).html() + ' <small>'+ $('<div>').append(userprof).html() +'</small>');
                 userimg = $('<img />', { 
                   src: '/img/doge-profile.jpg',
                   alt: 'profile',
