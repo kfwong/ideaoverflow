@@ -16,53 +16,52 @@
 
 @endif
 
-<div>
-{!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'PATCH', 'files' => true]) !!}
+<div class="container-fluid">
+    <div class="row">
+        
+        {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'PATCH', 'files' => true]) !!}
+        
+        <div class="form-group col-xs-12">  
+            {!! Form::label('name','Name') !!}
+            {!! Form::text('name',null,array('class'=>'form-control')) !!}
+        </div>
 
-<div class="form-group">
+        <div class="form-group col-xs-12">
+            {!! Form::label('email','Email') !!}
+            {!! Form::text('email',null,array('class'=>'form-control')) !!}
+        </div>
 
-{!! Form::label('name','Name') !!}
-{!! Form::text('name',null,array('class'=>'form-control')) !!}
-
-</div>
-
-<div class="form-group">
-
-    {!! Form::label('email','Email') !!}
-    {!! Form::text('email',null,array('class'=>'form-control')) !!}
-
-</div>
-
-<div class="form-group">
-
-    {!! Form::label('description','Description') !!}
-    {!! Form::textarea('description',null,array('class'=>'form-control')) !!}
-
-</div>
+        <div class="form-group col-xs-12">
+            {!! Form::label('description','Description') !!}
+            {!! Form::textarea('description',null,array('class'=>'form-control')) !!}
+        </div>
 	
 
-<div class="form-group">
+        <div class="form-group col-xs-12">
+            {!! Form::label('gender','Gender') !!}
+            {!! Form::select('gender',[
+                'Not specified' => 'Not specified',
+                'Male' => 'Male',
+                'Female' => 'Female',
+                ], null, ['class' => 'form-control'])!!}
+        </div>
 
-    {!! Form::label('gender','Gender') !!}
-    {!! Form::select('gender',[
-            'Not specified' => 'Not specified',
-            'Male' => 'Male',
-            'Female' => 'Female',
-            ], null, ['class' => 'form-control'])!!}
-</div>
+        <div class="form-group col-xs-12">
+            {!! Form::label('avatar', 'Avatar (jpeg/png)') !!}
+            {!! Form::file('avatar') !!}
+        </div>
 
-<div class="form-group">
-    {!! Form::label('avatar', 'Avatar (jpeg/png)') !!}
-    {!! Form::file('avatar') !!}
-    {!! Form::reset('Reset form', array('class' => 'pull-right')) !!}
-</div>
+        <div class="form-group col-xs-12">
+            {!! Form::reset('Reset form') !!}
+        </div>
 
-    {!! Form::submit('Update Profile', 
-        array('class'=>'btn btn-primary')) !!}
+        <div class="col-xs-12">
+            <br>
+            {!! Form::submit('Update Profile', array('class'=>'btn btn-primary')) !!}
+            <a class="btn btn-primary" href="/users/{{$user->id}}">Cancel</a>
+        </div>
 
-    <a class="btn btn-primary" href="/users/{{$user->id}}">Cancel</a>
+        {!! Form::close() !!}
 
-
-{!! Form::close() !!}
-
+    </div>
 </div>
