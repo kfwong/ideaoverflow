@@ -257,7 +257,7 @@
                                 </span>
                             </div>
                             <div class="panel-body">
-                                <p style="word-wrap: break-word;">{{ $post->body }}</p>
+                                <p style="word-break: break-all;">{{ $post->body }}</p>
                             </div>
 
                             <div class="panel-footer">
