@@ -13,7 +13,7 @@
 	<article>
 
     <div class="col-xs-12">    
-        <a href="/posts/{{$post->id}}"><h4>{{$post->title}}</h4></a>
+        <a href="/posts/{{$post->id}}"><h3>{{$post->title}}</h3></a>
     </div>
 
     <div class="col-md-6">    
