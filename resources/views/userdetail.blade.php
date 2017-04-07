@@ -25,7 +25,7 @@
             @endif
 
             <div class="row">
-                <div class="col-xs-3">
+                <div class="col-sm-3 hidden-xs">
                     @include('userprofile.usermaster')
                     @can('update', $user)
                     <div>
@@ -34,7 +34,7 @@
                     @endcan
                 </div>
 
-                <div class="col-xs-9">
+                <div class="col-xs-12 col-sm-9">
                     @include('userprofile.usercontents')
                 </div>
             </div>

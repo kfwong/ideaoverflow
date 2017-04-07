@@ -32,6 +32,8 @@
           <ul class="dropdown-menu">
             <li><a href="/users/{{ Auth::user()->id }}">View my profile</a></li>
             <li class="divider" role="separator"></li>
+            <li><a href="/users/{{ Auth::user()->id }}/edit">Edit my profile</a></li>
+            <li class="divider" role="separator"></li>
             {{ Form::open(['url'=>'/logout']) }}
             <div class="text-center">
             <li>{{ Form::submit('Logout', ['class' => 'btn btn-sm   btn-danger']) }}</li>

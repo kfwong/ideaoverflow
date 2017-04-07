@@ -1,9 +1,9 @@
 <div>
     @if (Storage::disk('public')->exists("img/avatars/avatar_$user->id.jpg")) 
-	    {{  Html::image(Storage::url("img/avatars/avatar_$user->id.jpg") ,'profile' ,array('width'=>200, 'height'=>200))  }}
+	    {{  Html::image(Storage::url("img/avatars/avatar_$user->id.jpg") ,'profile', array('class' => 'img-responsive'))  }}
 
     @else 
-        {{  Html::image('img/doge-profile.jpg','profile',array('width'=>200, 'height'=>200))  }}
+        {{  Html::image('img/doge-profile.jpg','profile',array('class' => 'img-responsive'))  }}
 
     @endif 
 
