@@ -36,14 +36,19 @@
             {!! Form::textarea('description',null,array('class'=>'form-control')) !!}
         </div>
 	
-
         <div class="form-group col-xs-12">
-            {!! Form::label('gender','Gender') !!}
-            {!! Form::select('gender',[
-                'Not specified' => 'Not specified',
-                'Male' => 'Male',
-                'Female' => 'Female',
-                ], null, ['class' => 'form-control'])!!}
+            {!! Form::label('gender', 'Gender') !!}
+            <div id="gender">
+                <label class="radio-inline">
+                    {!! Form::radio('gender', 'male') !!} Male
+                </label>
+                <label class="radio-inline">
+                    {!! Form::radio('gender', 'female') !!} Female
+                </label>
+                <label class="radio-inline">
+                    {!! Form::radio('gender', 'unspecified') !!} Unspecified
+                </label>               
+            </div>
         </div>
 
         <div class="form-group col-xs-12">
