@@ -59,28 +59,24 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">Gender</label>
-
-                            <div class="col-md-6">
-                                <label class="radio-inline">
-                                    <input id="gender" type="radio" name="gender" value="not specified" required><label
-                                            for="not specified"> not specified</label>
-                                </label>
-                                <label class="radio-inline">
-                                    <input id="gender" type="radio" name="gender" value="female" required><label
-                                            for="female"> female</label>
-                                </label>
-                                <label class="radio-inline">
-                                    <input id="gender" type="radio" name="gender" value="male" required><label
-                                            for="male"> male</label>
-                                </label>
-
-                                @if ($errors->has('gender'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('gender') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                            <label for="gender" class="col-md-4 control-label">Gender</label>
+                                <div class="col-md-6" id="gender">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="gender" value="male" required> Male
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="gender" value="female" required> Female
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="gender" value="unspecified" required> Unspecified
+                                    </label>
+                                    @if ($errors->has('gender'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('gender') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </label>
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -86,6 +87,7 @@ class UserController extends Controller
             'name' => 'required|max:70',
             'email' => "required|unique:users,email,$id,|email",
             'description' => 'max:140',
+            'gender' => ['required', Rule::in(['male', 'female', 'unspecified'])],
             'avatar' => 'mimes:jpeg,png',
         ]);
 

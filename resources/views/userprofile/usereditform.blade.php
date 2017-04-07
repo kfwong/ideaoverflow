@@ -23,12 +23,12 @@
         
         <div class="form-group col-xs-12">  
             {!! Form::label('name','Name') !!}
-            {!! Form::text('name',null,array('class'=>'form-control')) !!}
+            {!! Form::text('name',null,array('class'=>'form-control', 'required' => 'required')) !!}
         </div>
 
         <div class="form-group col-xs-12">
             {!! Form::label('email','Email') !!}
-            {!! Form::text('email',null,array('class'=>'form-control')) !!}
+            {!! Form::text('email',null,array('class'=>'form-control', 'required' => 'required')) !!}
         </div>
 
         <div class="form-group col-xs-12">
@@ -36,14 +36,19 @@
             {!! Form::textarea('description',null,array('class'=>'form-control')) !!}
         </div>
 	
-
         <div class="form-group col-xs-12">
-            {!! Form::label('gender','Gender') !!}
-            {!! Form::select('gender',[
-                'Not specified' => 'Not specified',
-                'Male' => 'Male',
-                'Female' => 'Female',
-                ], null, ['class' => 'form-control'])!!}
+            {!! Form::label('gender', 'Gender') !!}
+            <div id="gender">
+                <label class="radio-inline">
+                    {!! Form::radio('gender', 'male', null, array('required' => 'required')) !!} Male
+                </label>
+                <label class="radio-inline">
+                    {!! Form::radio('gender', 'female', null, array('required' => 'required')) !!} Female
+                </label>
+                <label class="radio-inline">
+                    {!! Form::radio('gender', 'unspecified', null, array('required' => 'required')) !!} Unspecified
+                </label>               
+            </div>
         </div>
 
         <div class="form-group col-xs-12">

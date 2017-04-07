@@ -15,8 +15,8 @@
 
 	<a href="/users/{{$user->id}}" id="username"><p>{{"@".$user->username}}</p></a>
 
-    @if ($user->gender !== 'Not specified')
-	    <p id="gender">{{$user->gender}}</p>
+    @if ($user->gender === 'male' || $user->gender === 'female')
+	    <p id="gender">{{ ucfirst($user->gender) }}</p>
     @endif
     
     <p id="email">{{$user->email}}</p>
