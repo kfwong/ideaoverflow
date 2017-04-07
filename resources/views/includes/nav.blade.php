@@ -2,17 +2,13 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <!-- <img src = "img/logoblanc.png" width = "65px" text_align = "center"> -->
-        {{ HTML::image('img/logoblanc.png', 'logo', array( 'width' => 65, 'height' => 65 )) }}
-	</div>
-    <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/"> Ideaoverflow </a>
+      <a class="navbar-brand" href="/" style="margin-top: -5px;"> <div>{{ HTML::image('/img/logoblanc.png', 'logo') }} <span style="font-family: 'Jockey One', sans-serif;font-size: 18pt;">Idea<span style="font-family: 'Jockey One', sans-serif;font-size: 18pt;color:#ED7347;">Overflow</span></span></div></a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right text-center">
