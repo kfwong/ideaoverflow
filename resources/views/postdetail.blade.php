@@ -94,7 +94,7 @@
                                     href="{{ '/users/'.$post->user->id }}">{{ '@'. $post->user->username }}</a>
                         </p>
                     </h5>
-                    <p>{{ $post->body }}</p>
+                    <p style="word-wrap: break-word;">{{ $post->body }}</p>
                 </div>
                 <div>
                     <button class="btn btn-{{(count($post->likes) > 0)? 'primary':'default' }} btn-sm btn-like"
@@ -154,7 +154,7 @@
                                                 <small>{{$comment->updated_at->diffForHumans()}}</small>
                                             </p>
                                         </h4>
-                                        <p>{{$comment->body}}</p>
+                                        <p style="word-break: break-all;">{{$comment->body}}</p>
                                     </div>
                                     @can('destroy', $comment)
                                     <div class="media-body edit-comment">

@@ -246,7 +246,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="modal-title">
-                                    <a class="post-title" href="{{'/posts/'.$post->id}}">{{ $post->title }}</a>
+                                    <a class="post-title" href="{{'/posts/'.$post->id}}" style="">{{ $post->title }}</a>
                                     <small>
                                         <span class="label {{'tag-'.lcfirst(($post->tags->first())['name'])}}">{{($post->tags->first())['name']}}</span>
                                     </small>
@@ -257,7 +257,7 @@
                                 </span>
                             </div>
                             <div class="panel-body">
-                                <p>{{ $post->body }}</p>
+                                <p style="word-wrap: break-word;">{{ $post->body }}</p>
                             </div>
 
                             <div class="panel-footer">
