@@ -257,7 +257,7 @@
                                 </span>
                             </div>
                             <div class="panel-body">
-                                <p style="hyphens: auto;-webkit-hyphens:auto;-moz-hyphens:auto;-ms-hyphens:auto;word-wrap: break-word;">{{ $post->body }}</p>
+                                <p style="hyphens: auto;-webkit-hyphens:auto;-moz-hyphens:auto;-ms-hyphens:auto;word-wrap: break-word;word-break:break-word;">{{ $post->body }}</p>
                             </div>
 
                             <div class="panel-footer">
