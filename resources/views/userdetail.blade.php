@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="col-xs-12 col-sm-9">
-                    @include('userprofile.usercontents')
+                    @include('userprofile.usercomments')
                 </div>
             </div>
         </main>
