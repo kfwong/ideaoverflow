@@ -1,5 +1,5 @@
 <!-- footer -->
-<footer class="center" style="background-color: transparent;color: white;">
+<footer class="center" style="background-color: transparent;color: white; font-family: 'Jockey One', sans-serif; font-size: 12pt;">
     Copyright @ 2017 Ideaoverflow
 
 <br>
