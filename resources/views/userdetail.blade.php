@@ -48,8 +48,13 @@
                 </ul>
                 </div>
 
-                <div class="col-xs-12 col-sm-9">
-                    @include('userprofile.usercomments')
+                <div class="col-xs-12 col-sm-9 tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="posts">
+                        @include('userprofile.usercontents')
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="comments">
+                        @include('userprofile.usercomments')
+                    </div>
                 </div>
             </div>
         </main>
