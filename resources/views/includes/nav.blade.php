@@ -42,7 +42,7 @@
           </ul>
         </li>
         @else
-        <li><a href="/login">Login</a></li>
+        <li><a class="btn btn-primary" href="/login">Login</a></li>
         <li><a class="btn btn-primary" href="/register">Sign Up</a></li>
         @endif
       </ul>
