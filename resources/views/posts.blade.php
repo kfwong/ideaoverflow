@@ -8,8 +8,6 @@
     {{ Html::style('css/gallery.prefixed.css') }}
     {{ Html::style('css/posts.css') }}
     {{ Html::style('css/search.css') }}
-    {{ Html::style('https://fonts.googleapis.com/css?family=Jockey+One') }}
-    {{ Html::style('https://fonts.googleapis.com/css?family=Spinnaker') }}
     <style>
         /* Base styles */
         .column {
@@ -254,7 +252,7 @@
                                 </span>
                             </div>
                             <div class="panel-body">
-                                <p style="hyphens: auto;-webkit-hyphens:auto;-moz-hyphens:auto;-ms-hyphens:auto;word-wrap: break-word;word-break:break-word;">{{ str_limit($post->body, 500, '...') }}</p>
+                                <p style="hyphens: auto;-webkit-hyphens:auto;-moz-hyphens:auto;-ms-hyphens:auto;word-wrap: break-word;word-break:break-word;">{!! clean(str_limit($post->body, 500, '...')) !!}</p>
                             </div>
 
                             <div class="panel-footer">
