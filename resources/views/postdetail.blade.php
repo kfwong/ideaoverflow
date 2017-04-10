@@ -94,7 +94,7 @@
                                     href="{{ '/users/'.$post->user->id }}">{{ '@'. $post->user->username }}</a>
                         </p>
                     </h5>
-                    <p style="hyphens: auto;word-wrap: break-word;">{{ $post->body }}</p>
+                    <p style="hyphens: auto;word-wrap: break-word;">{!! clean($post->body) !!}</p>
                 </div>
                 <div>
                     <button class="btn btn-{{(count($post->likes) > 0)? 'primary':'default' }} btn-sm btn-like"

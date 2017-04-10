@@ -17,11 +17,11 @@
           <div class="dropdown">
             <button class="btn btn-success dropdown-toggle navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-family: 'Jockey One', sans-serif;font-size: 12pt;">Write Post <span class="fa fa-pencil-square-o"></span></button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><a href="/posts/create" style="font-family: 'Jockey One', sans-serif;font-size: 12pt;">Post an idea</a></li>
+              <li><a href="/posts/create?postType=idea" style="font-family: 'Jockey One', sans-serif;font-size: 12pt;">Post an idea</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="/posts/create" style="font-family: 'Jockey One', sans-serif;font-size: 12pt;">Post a problem</a></li>
+              <li><a href="/posts/create?postType=problem" style="font-family: 'Jockey One', sans-serif;font-size: 12pt;">Post a problem</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="/posts/create" style="font-family: 'Jockey One', sans-serif;font-size: 12pt;">Post a project</a></li>
+              <li><a href="/posts/create?postType=project" style="font-family: 'Jockey One', sans-serif;font-size: 12pt;">Post a project</a></li>
             </ul>
           </div>
         </li>
