@@ -6,6 +6,60 @@
 
 @section('stylesheet')
     {{ Html::style('css/posts.css') }}
+    <style>
+        h1, h3, label, .btn{
+            font-family: 'Jockey One', sans-serif !important;
+            color: white !important;
+        }
+
+        body{
+            background-color: #096180 !important;
+        }
+
+        .jumbotron{
+            background-color: #096180 !important;
+            border: dashed 3px white !important;
+        }
+
+        .jumbotron h1{
+            color: #E47047 !important;
+        }
+
+        .jumbotron h5{
+            color: white;
+            font-family: 'Jockey One', sans-serif !important;
+        }
+
+        .jumbotron p{
+            color: white;
+        }
+
+        #comments p{
+            color: white;
+        }
+
+        .btn-default{
+            background-color:#128F76 !important;
+            border-color: #128F76 !important;
+        }
+
+        #comments .panel{
+            border-radius: 0px;
+            border: solid 3px #E47047 !important;
+        }
+
+        #comments img{
+            border-radius: 50%;
+        }
+
+        #comments .user-name{
+            font-family: 'Jockey One', sans-serif !important;
+        }
+
+        #comments .display-comment p{
+            color: black !important;
+        }
+    </style>
 @endsection
 
 @section('script')
@@ -94,13 +148,13 @@
                                     href="{{ '/users/'.$post->user->id }}">{{ '@'. $post->user->username }}</a>
                         </p>
                     </h5>
-                    <p style="hyphens: auto;word-wrap: break-word;">{{ $post->body }}</p>
+                    <p style="hyphens: auto;word-wrap: break-word;">{!! clean($post->body) !!}</p>
                 </div>
                 <div>
                     <button class="btn btn-{{(count($post->likes) > 0)? 'primary':'default' }} btn-sm btn-like"
                             data-post-id="{{ $post->id }}" @cannot('like', App\Post::class) {{ 'disabled' }} @endcannot >
                         <span class="fa fa-thumbs-up"></span><span
-                                class="like-state">{{(count($post->likes) > 0)? 'Liked ':'Like ' }}</span></span>
+                                class="like-state">&nbsp;{{(count($post->likes) > 0)? 'Liked ':'Like ' }}</span></span>
                     </button>
 
                     <a href="" class="show-likers" data-toggle="modal" data-target="#exampleModal"
@@ -144,12 +198,10 @@
                                     </div>
                                     <div class="media-body display-comment">
                                         <h4 class="media-heading">
-                                            <p><a class="user-name"
-                                                  href="{{ '/users/'.$comment->user_id }}">{{ $comment->user->username}}</a>
-                                            </p>
-
                                             <p>
-                                                <small>{{$comment->updated_at->diffForHumans()}}</small>
+                                                <a class="user-name"
+                                                  href="{{ '/users/'.$comment->user_id }}">{{ $comment->user->username}}</a>&nbsp;
+                                                <small><i class="fa fa-clock-o"></i>&nbsp;{{$comment->updated_at->diffForHumans()}}</small>
                                             </p>
                                         </h4>
                                         <p style="hyphens: auto;word-break:break-word;">{{$comment->body}}</p>

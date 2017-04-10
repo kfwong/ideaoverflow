@@ -45,7 +45,7 @@ class PostController extends Controller
     {
         $this->authorize('create', Post::class);
 
-        return view('createpost', ['type' => 'post']);
+        return view('createpost', ['type' => $request->postType]);
     }
 
     /**
