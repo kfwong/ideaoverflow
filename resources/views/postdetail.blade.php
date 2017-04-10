@@ -110,8 +110,6 @@
 
                     <div id="tags-container" class="hidden-xs">
                         <span class="label {{'tag-'.lcfirst(($post->tags->where('type','Post')->first())['name'])}}">{{($post->tags->where('type','Post')->first())['name']}}</span>
-                        <a class="btn btn-info btn-xs" href="">Web Development</a>
-                        <a class="btn btn-warning btn-xs" href="">Environment Conservation</a>
                     </div>
                 </div>
 

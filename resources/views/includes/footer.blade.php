@@ -6,7 +6,7 @@
 
 <!--TODO: @annahe change IP address -->
   <div class="fb-like" 
-    data-href="188.166.214.134"  
+    data-href="128.199.213.223"
     data-layout="button_count" 
     data-action="like" 
     data-size="small" 
