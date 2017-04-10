@@ -30,6 +30,18 @@
             {!! Form::label('email','Email') !!}
             {!! Form::text('email',null,array('class'=>'form-control', 'required' => 'required')) !!}
         </div>
+		
+		<div class="form-group col-xs-12">
+            {!! Form::label('hide_email', 'Hide_email') !!}
+            <div id="hide_email">
+                <label class="radio-inline">
+                    {!! Form::radio('hide_email', 'true', null, array('required' => 'required')) !!} True
+                </label>
+                <label class="radio-inline">
+                    {!! Form::radio('hide_email', 'false', null, array('required' => 'required')) !!} False
+                </label>               
+            </div>
+        </div>
 
         <div class="form-group col-xs-12">
             {!! Form::label('description','Description') !!}

@@ -52,6 +52,7 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'username' => 'required|max:255|unique:users',
             'email' => 'required|email|max:255|unique:users',
+			'hide_email' => ['required', Rule::in(['true', 'false'])],
             'gender' => ['required', Rule::in(['male', 'female', 'unspecified'])],
             'password' => 'required|min:6|confirmed',
         ]);
@@ -69,6 +70,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'username' => $data['username'],
             'email' => $data['email'],
+			'hide_email' => $data['hide_email']
             'password' => bcrypt($data['password']),
 			'gender' => $data['gender'],
         ]);

@@ -18,6 +18,7 @@ class User extends Authenticatable
         'name',
         'username',
         'email',
+		'hide_email'
         'password',
         'description',
 		'gender'

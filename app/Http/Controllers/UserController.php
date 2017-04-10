@@ -86,6 +86,7 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required|max:70',
             'email' => "required|unique:users,email,$id,|email",
+			'hide_email' =>  ['required', Rule::in(['true', 'false'])]
             'description' => 'max:140',
             'gender' => ['required', Rule::in(['male', 'female', 'unspecified'])],
             'avatar' => 'mimes:jpeg,png',
