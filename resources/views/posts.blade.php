@@ -120,10 +120,7 @@
 @section('script')
     {{ Html::script('https://cdnjs.cloudflare.com/ajax/libs/salvattore/1.0.9/salvattore.min.js') }}
     {{ Html::script('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js') }}
-    {{ Html::script('js/parallax.min.js') }}
-    {{ Html::script('js/likebutton.js') }}
-    {{ Html::script('js/jquery-ias.min.js') }}
-    {{ Html::script('js/search.js') }}
+    {{ Html::script('js/posts.js') }}
     <script>
         $(document).ready(function () {
             var ias = $.ias({
