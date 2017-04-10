@@ -42,7 +42,7 @@
           </ul>
         </li>
         @else
-        <li><a href="/login" style="font-family: 'Jockey One', sans-serif;font-size: 14pt;">Login</a></li>
+        <li><a class="btn btn-primary" href="/login" style="font-family: 'Jockey One', sans-serif;font-size: 14pt;">Login</a></li>
         <li><a class="btn btn-primary" href="/register" style="font-family: 'Jockey One', sans-serif;font-size: 14pt;">Sign Up</a></li>
         @endif
       </ul>
