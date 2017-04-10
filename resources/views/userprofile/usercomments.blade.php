@@ -18,6 +18,7 @@
 
     <div class="col-xs-12">
         {!! clean($comment->body) !!}
+	<hr/>
     </div>
 
     </article>

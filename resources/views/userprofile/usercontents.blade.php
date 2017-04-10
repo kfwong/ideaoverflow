@@ -24,7 +24,7 @@
     </div>
 
     <div class="col-xs-12">
-        <p>{{$post->body}} </p>
+        {!! clean($post->body) !!}
         <hr>
     </div>
 
