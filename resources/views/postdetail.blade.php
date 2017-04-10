@@ -87,7 +87,7 @@
                     <a href="/posts/{{$post->id}}/edit" class="close" id="btn-edit-post"><span aria-hidden="true"><i
                                     class="fa fa-pencil"></i></span></a>
                     @endif
-                    <h1>{{ $post->title }}</h1>
+                    <h1 style="word-wrap:break-word;">{{ $post->title }}</h1>
                     <h5>
                         <p>
                             by {{ucfirst($post->user->name)}} <a

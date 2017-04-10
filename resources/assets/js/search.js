@@ -36,8 +36,8 @@ $('#searchbox').on('keyup', function () {
                 $('.results').empty();
                 if (data.length > 0) {
                     data.forEach(function (item) {
-                        var dateUpdated = moment(item.updated_at, 'YYYY-MM-DD HH:mm:ss').fromNow();
-                        $('.results').append('<li><a href="/posts/' + item.id + '"><span class="result-title">' + escapeHtml(item.title) + '</span>&nbsp;&nbsp;<span class="label tag-'+item.type+'">'+escapeHtml(item.type)+'</span>&nbsp;&nbsp;<small class="result-time"><i class="fa fa-clock-o"></i>&nbsp;'+dateUpdated+'</small><br/><span class="result-body">' + escapeHtml(item.body) + '</span></a></li>');
+                        //var dateUpdated = moment(item.updated_at, 'YYYY-MM-DD HH:mm:ss').fromNow();
+                        $('.results').append('<li><a href="/posts/' + item.id + '"><span class="result-title">' + escapeHtml(item.title) + '</span>&nbsp;&nbsp;<span class="label tag-'+item.type+'">'+escapeHtml(item.type)+'</span>&nbsp;&nbsp;<br/><span class="result-body">' + escapeHtml(item.body) + '</span></a></li>');
                     });
                 } else {
                     $('.results').append('<li><a href="#">No result found... Try something else?</a></li>');

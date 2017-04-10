@@ -243,7 +243,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="modal-title">
-                                    <a class="post-title" href="{{'/posts/'.$post->id}}" style="">{{ $post->title }}</a>
+                                    <a class="post-title" href="{{'/posts/'.$post->id}}" style="word-wrap:break-word;word-break:break-all;"><strong>{{ str_limit($post->title,200, '...') }}</strong></a>
                                     <small>
                                         <span class="label {{'tag-'.lcfirst(($post->tags->first())['name'])}}">{{($post->tags->first())['name']}}</span>
                                     </small>
@@ -254,7 +254,7 @@
                                 </span>
                             </div>
                             <div class="panel-body">
-                                <p style="hyphens: auto;-webkit-hyphens:auto;-moz-hyphens:auto;-ms-hyphens:auto;word-wrap: break-word;word-break:break-word;">{{ $post->body }}</p>
+                                <p style="hyphens: auto;-webkit-hyphens:auto;-moz-hyphens:auto;-ms-hyphens:auto;word-wrap: break-word;word-break:break-word;">{{ str_limit($post->body, 500, '...') }}</p>
                             </div>
 
                             <div class="panel-footer">
