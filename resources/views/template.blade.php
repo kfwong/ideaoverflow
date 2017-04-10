@@ -43,6 +43,8 @@
     {{ Html::style('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') }}
     {{ Html::style('css/bootstrap.css') }}
     {{ Html::style('css/custom.css') }}
+    {{ Html::style('https://fonts.googleapis.com/css?family=Jockey+One') }}
+    {{ Html::style('https://fonts.googleapis.com/css?family=Spinnaker') }}
 
     <!-- TODO: @annahe change the appropriate things  -->
     <!-- Used for facebook like -->

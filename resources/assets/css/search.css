@@ -47,6 +47,11 @@ body {
     border:none;
 }
 
+.search-field>input[type=search],
+.search-field>button {
+    font-family: 'Jockey One', 'Helvetica', sans-serif;
+}
+
 /**/
 
 .search-field .results {

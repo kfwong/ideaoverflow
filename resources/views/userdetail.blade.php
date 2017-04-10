@@ -5,7 +5,7 @@
 @section('content-title','Ideaoverflow')
 
 @section('stylesheet')
-
+    {{Html::style('css/tabs.css')}}
 @endsection
 
 @section('script')
@@ -34,8 +34,27 @@
                     @endcan
                 </div>
 
-                <div class="col-xs-12 col-sm-9">
-                    @include('userprofile.usercontents')
+                <div class="col-xs-12 col-sm-9 ">
+                <ul class="nav nav-tabs nav-justified" role="tablist">
+                        <li role="presentation" class="active">
+                      <a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">
+                        Posts
+                    </a>
+                  </li>
+                        <li role="presentation">
+                      <a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">
+                        Comments
+                    </a>  
+                </ul>
+                </div>
+
+                <div class="col-xs-12 col-sm-9 tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="posts">
+                        @include('userprofile.usercontents')
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="comments">
+                        @include('userprofile.usercomments')
+                    </div>
                 </div>
             </div>
         </main>

@@ -9,6 +9,7 @@
     {{ Html::style('css/posts.css') }}
     {{ Html::style('css/search.css') }}
     {{ Html::style('https://fonts.googleapis.com/css?family=Jockey+One') }}
+    {{ Html::style('https://fonts.googleapis.com/css?family=Spinnaker') }}
     <style>
         /* Base styles */
         .column {
@@ -162,7 +163,7 @@
                                 <div class="col-md-6 hidden-xs" style="text-align: left;">
                                     <h1>Brainstorming for Hackathon?</h1>
 
-                                    <p>Ideaoverflow is the creativity hub that saves you from the grind of finding
+                                    <p style="font-family: 'Spinnaker', sans-serif;">Ideaoverflow is the creativity hub that saves you from the grind of finding
                                         inspiration.</p>
                                 </div>
                             </div>
@@ -176,7 +177,7 @@
                                 <div class="col-md-6 hidden-xs" style="text-align: left;">
                                     <h1>Marketing Research</h1>
 
-                                    <p>Illustrate your brilliant concept to potential customers and get free, heartfelt
+                                    <p style="font-family: 'Spinnaker', sans-serif;">Illustrate your brilliant concept to potential customers and get free, heartfelt
                                         feedback.</p>
                                 </div>
                             </div>
@@ -190,7 +191,7 @@
                                 <div class="col-md-6 hidden-xs" style="text-align: left;">
                                     <h1>Portfolio Showcase</h1>
 
-                                    <p>Keep your past feats alive and let them tell your stories.</p>
+                                    <p style="font-family: 'Spinnaker', sans-serif;">Keep your past feats alive and let them tell your stories.</p>
                                 </div>
                             </div>
                         </figure>
@@ -203,7 +204,7 @@
                                 <div class="col-md-6 hidden-xs" style="text-align: left;">
                                     <h1>Startup</h1>
 
-                                    <p>Connect, communicate and collaborate with professionals out of your realm.</p>
+                                    <p style="font-family: 'Spinnaker', sans-serif;">Connect, communicate and collaborate with professionals out of your realm.</p>
                                 </div>
                             </div>
                         </figure>
@@ -215,8 +216,7 @@
                                 </div>
                                 <div class="col-md-5" style="text-align: left;">
                                     <h1>Share Your Success</h1>
-
-                                    <p>Nurture your ideas, record their growth, earn more community support.</p>
+                                    <p style="font-family: 'Spinnaker', sans-serif;">Nurture your ideas, record their growth, earn more community support.</p>
                                 </div>
                             </div>
                         </figure>
