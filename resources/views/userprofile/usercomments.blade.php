@@ -17,7 +17,7 @@
     </div>
 
     <div class="col-xs-12">
-        <p>{{$comment->body}} </p>
+        <p>{!! clean($comment->body) !!} </p>
         <br>
     </div>
 
