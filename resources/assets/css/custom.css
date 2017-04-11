@@ -1,11 +1,19 @@
 #content {
-	margin-top: 70px;
+    margin-top: 70px;
 }
 
 footer {
-	text-align: center
+    text-align: center
 }
 
 img.img-circle {
     border-radius: 50%;
+}
+
+#scrollToTop {
+    text-align: center; 
+    position: fixed;
+    bottom: 20px;
+    right: 40px;
+    display: none;
 }
