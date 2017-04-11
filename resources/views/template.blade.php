@@ -45,16 +45,6 @@
     {{ Html::style('https://fonts.googleapis.com/css?family=Jockey+One') }}
     {{ Html::style('https://fonts.googleapis.com/css?family=Spinnaker') }}
 
-    <style>
-    #scrollToTop {
-        text-align:center; 
-        position:fixed;
-        bottom:20px;
-        right:40px;
-        display:none;
-    }
-    </style>
-
     <!-- TODO: @annahe change the appropriate things  -->
     <!-- Used for facebook like -->
     <meta property="og:url" content=""/>
@@ -114,23 +104,5 @@ window.fbAsyncInit = function () {
     ref.parentNode.insertBefore(js, ref);
 }(document));
 </script>
-<script>
-$(document).ready(function(){
 
-    // Display the scroll to top button depending on scrollbar's vertical position  
-    $(window).scroll(function(){
-        if ($(this).scrollTop() > 300) {
-            $('#scrollToTop').fadeIn();
-        } else {
-            $('#scrollToTop').fadeOut();
-        }
-    });
-
-    // Animate the scrolling on button click
-    $('#scrollToTop').click(function(){
-        $('html, body').animate({scrollTop : 0},800);
-        return false;
-    });
-
-});
-</script>
+<script src="js/scrollToTop.js"></script>
