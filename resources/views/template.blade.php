@@ -105,4 +105,4 @@ window.fbAsyncInit = function () {
 }(document));
 </script>
 
-<script src="js/scrollToTop.js"></script>
+{{ Html::script("js/scrollToTop.js") }}
